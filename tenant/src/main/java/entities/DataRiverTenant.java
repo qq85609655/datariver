@@ -38,7 +38,7 @@ public class DataRiverTenant {
             tenant.set("admins", adminsRef);
         }
         List<Referenceable> usersRef = new ArrayList<>();
-        for (DataRiverUser user:users){
+        for (DataRiverUser user : users){
             usersRef.add(DataRiverUser.createUserEntity(user));
         }
         if (usersRef.size() > 0){

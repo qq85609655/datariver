@@ -68,13 +68,12 @@ package DxtDataTypes #Plum{
         description : String
         dataContainer : DATA_CONTAINER_SUPER_TYPE
     }
-
+    DR_USER -> DR_PROJECT : projects >
+    DR_PROJECT_ROLE -> DR_USER : users>
     DR_TENANT -> DR_USER
     DR_TENANT -> DR_PROJECT : projects>
     DR_PROJECT -> DR_ENGINE : engine>
-    DR_PROJECT -> DR_PROJECT_ROLE : roles>
-    DR_PROJECT_ROLE -> DR_USER : users>
-    DR_USER -> DR_PROJECT : projects >
     DR_ENGINE -> DATA_CONTAINER_SUPER_TYPE :　dataContainer>
+    DR_PROJECT -> DR_PROJECT_ROLE : roles>
 }
 @enduml

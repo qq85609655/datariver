@@ -13,17 +13,21 @@ import java.util.List;
  * @date 2015/12/10 11:03
  */
 public class DataRiverProjectRole {
-    private DataRiverRoleType roleType;
+    private String name;
     private List<DataRiverUser> users = new ArrayList<>();
     private String policy;
     private String proxyAccount;
 
+    public DataRiverProjectRole(String name){
+        this.name = name;
+    }
+
     //create only once
     public Referenceable createProjectRole(String tenantName, String projectName){
         String type = TenantDataModelType.DR_PROJECT_ROLE.getName();
-        String qualifiedName = TenantUtil.formatQualifiedName(tenantName, projectName, roleType.getRoleName());
+        String qualifiedName = TenantUtil.formatQualifiedName(tenantName, projectName, name);
         Referenceable role = DataRiverCreateEntity.createNewEntity(type, TenantUtil.formateTraitName(type));
-        role.set("type", roleType.getRoleName());
+        role.set("name", name);
         role.set("policy", policy);
         role.set("proxyAccount", proxyAccount);
         List<Referenceable> usersRef = new ArrayList<>();
@@ -37,12 +41,13 @@ public class DataRiverProjectRole {
         return role;
     }
 
-    public DataRiverRoleType getRoleType() {
-        return roleType;
+
+    public String getName() {
+        return name;
     }
 
-    public void setRoleType(DataRiverRoleType roleType) {
-        this.roleType = roleType;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPolicy() {

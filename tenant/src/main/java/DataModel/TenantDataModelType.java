@@ -8,9 +8,9 @@ package DataModel;
  */
 public enum TenantDataModelType {
     //enum type
-    DR_PROJECT_ROLE_TYPE("DrProjectRoleType"),
     DR_PROJECT_TYPE("DrProjectType"),
     DR_PROJECT_STATUS("DrProjectStatus"),
+    DR_ENGINE_TYPE("DrEngineType"),
     //class type
     DR_USER("DrUser"),
     DR_PROJECT_ROLE("DrProjectRole"),

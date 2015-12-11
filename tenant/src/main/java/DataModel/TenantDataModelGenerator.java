@@ -5,6 +5,7 @@ import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasServiceException;
 import org.apache.atlas.common.model.CoreDataTypes;
 import org.apache.atlas.common.model.RelationalDataTypes;
+import org.apache.atlas.odps.model.OdpsDataTypes;
 import org.apache.atlas.typesystem.TypesDef;
 import org.apache.atlas.typesystem.json.TypesSerialization;
 import org.apache.atlas.typesystem.types.*;
@@ -33,7 +34,6 @@ public class TenantDataModelGenerator {
     }
 
     public  void createDataModel(AtlasClient client) throws AtlasServiceException {
-        ceateDrProjectRoleType();
         createDrProjectType();
         createDrProjectStatus();
         createDrUser();
@@ -44,15 +44,9 @@ public class TenantDataModelGenerator {
         client.createType(getTypesDef());
     }
 
-    private void ceateDrProjectRoleType(){
-        EnumValue[] values = {new EnumValue("PROJECT_ADMIN", 1), new EnumValue("PROJECT_ROLE0", 2), new EnumValue("PROJECT_ROLE1", 3),
-            new EnumValue("PROJECT_ROLE2", 4), new EnumValue("PROJECT_ROLE3", 5), new EnumValue("PROJECT_ROLE4", 6), new EnumValue("PROJECT_ROLE5", 7),
-            new EnumValue("PROJECT_ROLE6", 8), new EnumValue("PROJECT_ROLE7", 9),new EnumValue("PROJECT_ROLE8", 10)};
-        String name = TenantDataModelType.DR_PROJECT_ROLE_TYPE.getName();
-        EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
-        enumTypeDefinitionMap.put(name, definition);
-    }
+    private void createDrEngineType(){
 
+    }
     private void createDrProjectType(){
         EnumValue[] values = {new EnumValue("DR_PROJECT_TYPE_DEVELOP", 1), new EnumValue("DR_PROJECT_TYPE_TEST", 2), new EnumValue("DR_PROJECT_TYPE_PRODUCE", 3),
             new EnumValue("DR_PROJECT_TYPE_PREPARE", 4)};
@@ -92,9 +86,11 @@ public class TenantDataModelGenerator {
 
     private void createDrProjectRole(){
         AttributeDefinition[] attributeDefinitions = new AttributeDefinition[]{
-            new AttributeDefinition("type", TenantDataModelType.DR_PROJECT_ROLE_TYPE.getName(),
+            new AttributeDefinition("name", DataTypes.STRING_TYPE.getName(),
                 Multiplicity.REQUIRED, false, null),
             new AttributeDefinition("users", DataTypes.arrayTypeName(TenantDataModelType.DR_USER.getName()),
+                Multiplicity.OPTIONAL, false, null),
+            new AttributeDefinition("acls", DataTypes.arrayTypeName(OdpsDataTypes.ODPS_OBJECT_PRIVILEGE.getValue()),
                 Multiplicity.OPTIONAL, false, null),
             new AttributeDefinition("policy",
                 DataTypes.STRING_TYPE.getName(),
