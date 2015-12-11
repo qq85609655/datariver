@@ -1,0 +1,143 @@
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one
+  ~ or more contributor license agreements.  See the NOTICE file
+  ~ distributed with this work for additional information
+  ~ regarding copyright ownership.  The ASF licenses this file
+  ~ to you under the Apache License, Version 2.0 (the
+  ~ "License"); you may not use this file except in compliance
+  ~ with the License.  You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<div class="row detailsPage" data-ng-controller="DetailsController">
+  <div class="col-lg-12 padding0">
+    <ul class="breadcrumb">
+      <li>
+        <button class="btn btn-link" data-ng-click="goBack()"><i class="fa fa-arrow-left"></i> 返回
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div role="tabpanel" class="col-lg-12 padding0">
+    <div class="mB20">
+      <h2><b>名称:</b> <span class="black">{{details.values.name}}</span></h2>
+      <h4><b>描述:</b> <span class="black">{{details.values.description}}</span></h4>
+      <tabset data-ng-if="isDataTable || isDataField || isDataContainer" data-ng-init="stepView=0;workflowView=0">
+        <tab heading="Trans View">
+          <h4 data-disable="!qualifiedName">
+            <span class="lineage">数据血缘</span>
+            <ng-include lineage-scope-type="task" src="'/modules/lineage/views/lineage_common.html'"/>
+          </h4>
+        </tab>
+        <tab heading="Step View" data-ng-click="stepView=1">
+          <h4 data-ng-if="stepView==1" data-disable="!qualifiedName">
+            <span class="lineage">数据血缘</span>
+            <ng-include lineage-scope-type="step" src="'/modules/lineage/views/lineage_common.html'"/>
+          </h4>
+        </tab>
+        <tab data-ng-if="isDataTable || isDataContainer" heading="Workflow View" data-ng-click="workflowView=1">
+          <h4 data-ng-if="workflowView==1" data-disable="!qualifiedName">
+            <span class="lineage">数据血缘</span>
+            <ng-include lineage-scope-type="workflow" src="'/modules/lineage/views/lineage_common.html'"/>
+          </h4>
+        </tab>
+      </tabset>
+      <h4 data-ng-if="isStep || isHiveTable || isTask || isAction" data-disable="!qualifiedName">
+        <span class="lineage">数据血缘</span>
+        <ng-include src="'/modules/lineage/views/lineage_common.html'"/>
+      </h4>
+    </div>
+    <tabset>
+      <tab heading="Details">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="col-md-3">Key</th>
+            <th>Value</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-repeat="(key,value) in details.values"
+              ng-if="value && (key!=='columns') && (key!=='name') && (key!=='description') && (key!=='config')">
+
+            <td>{{key}}</td>
+
+            <td data-ng-if="isObject(value) && isString(value.id)" class="pointer">
+              <a data-ui-sref="details({id:value.id})">{{ value.id }}</a>
+            </td>
+            <!-- 这里能不能把key的定义删除，只要isObject(value)&&!isObject(value.id)&&isString(value.value)就显示value,意思是对象不为空且id未定义且value的value为string-->
+            <!--<td data-ng-if="(key=='metaSource' || key=='dbType' || key=='status' || key=='type') && isObject(value)">{{ value.value }}</td>-->
+            <td data-ng-if="isObject(value)&&!isObject(value.id)&&isString(value.value)">{{ value.value }}
+            </td>
+
+            <td data-ng-if="isObject(value) && isObject(value.id) && isString(value.id.id)" class="pointer">
+              <a data-ui-sref="details({id:value.id.id})">{{ value.id.id }}</a></td>
+
+            <td data-ng-if="isArray(value)">
+              <div class="row" data-ng-repeat="(key1, value1) in value" ng-if="value1">
+                <div data-ng-if="isObject(value1)" data-ng-repeat="(key2, value2) in value1">
+                  <a data-ng-if="isString(value2) && key2 == 'id'" class="pointer pdLft15px"
+                     data-ui-sref="details({id:value2})">{{ value2 }}</a>
+                  <a data-ng-if="isObject(value2) && key2 == 'id'" class="pointer pdLft15px"
+                     data-ui-sref="details({id:value2.id})">{{ value2.id }}</a>
+                </div>
+              </div>
+            </td>
+
+            <td data-ng-if="!isArray(value) && isObject(value[0]) && isString(value[0].id) && key=='inputTables'"
+                data-ng-click="goDetails(value[0].id)" class="pointer">
+
+              <div class="row" data-ng-repeat="(key1, value1) in value[0]" ng-if="value1">
+                <div class="col-md-6" data-ng-if="!isString(value1)"
+                     data-ng-repeat="(key2, value2) in value1 track by $index"></div>
+                <div data-ng-if="isString(value2)" data-ng-repeat="(key3, value3) in value2"> {{key3}}:
+                  {{value3}}
+                </div>
+                <div class="col-md-6" data-ng-if="isString(value1)"> {{key1}} : {{value1 |
+                  date:'medium'}} UTC
+                </div>
+              </div>
+
+            </td>
+
+            <td data-ng-if="isKeyTime(key) && isNumber(value)">{{value | date:'yyyy-MM-dd HH:mm:ss'}} UTC
+            </td>
+            <td data-ng-if="!isKeyTime(key) && isNumber(value)">{{value}}</td>
+            <td data-ng-if="isString(value)">{{value}}</td>
+            <td data-ng-if="isKeyDependency(key)">
+              <div class="row" data-ng-repeat="(key1, value1) in value.values">
+                <div class="col-md-12" data-ng-if="isObject(value1)&&!isObject(value1.id)&&isString(value1.value)">
+                  {{key1}}: {{value1.value}}
+                </div>
+                <div class="col-md-12" data-ng-if="isString(value1)">{{key1}}: {{value1}}</div>
+              </div>
+            </td>
+          </tr>
+          <!--config数据较长，需要放到最后显示-->
+          <tr data-ng-if="isString(configValue)">
+            <td>config</td>
+            <td>
+              <textarea rows="{{caculatHeight(configValue)}}" readonly="readonly"
+                        style="width:100%;overflow:hidden;word-break:break-all;border-style:none;">{{formatXmlOrJson(configValue)}}
+              </textarea>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </tab>
+      <tab data-heading="Schema" data-ng-if="isHiveTable || isDataTable">
+        <ng-include src="'/modules/details/views/schema.html'"/>
+      </tab>
+            <tab data-heading="Tags" data-ng-if="isTags">
+              <ng-include  src="'/modules/tags/instance/views/tags.html'"/>
+            </tab> 
+    </tabset>
+  </div>
+</div>

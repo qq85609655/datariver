@@ -1,0 +1,108 @@
+<div id="category"></div>
+---+ Security Features of Apache Atlas
+
+
+---++ Overview
+
+The following features are available for enhancing the security of the platform:
+   * SSL 
+   * Service Authentication
+   * SPNEGO-based HTTP Authentication
+
+---+++ SSL
+
+Both SSL one-way (server authentication) and two-way (server and client authentication) are supported.  The following application properties (properties configured in the application.properties file) are available for configuring SSL:
+
+   * <code>atlas.enableTLS</code> (false|true) [default: false] - enable/disable the SSL listener
+   * <code>keystore.file</code> - the path to the keystore file leveraged by the server.  This file contains the server certificate.
+   * <code>truststore.file</code> - the path to the truststore file. This file contains the certificates of other trusted entities (e.g. the certificates for client processes if two-way SSL is enabled).  In most instances this can be set to the same value as the keystore.file property (especially if one-way SSL is enabled).
+   * <code>client.auth.enabled</code> (false|true) [default: false] - enable/disable client authentication.  If enabled, the client will have to authenticate to the server during the transport session key creation process (i.e. two-way SSL is in effect).
+   * <code>cert.stores.credential.provider.path</code> - the path to the Credential Provider store file.  The passwords for the keystore, truststore, and server certificate are maintained in this secure file.  Utilize the cputil script in the 'bin' directoy (see below) to populate this file with the passwords required. 
+	
+---++++ Credential Provider Utility Script
+
+In order to prevent the use of clear-text passwords, the Atlas platofrm makes use of the Credential Provider facility for secure password storage (see [[http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/CommandsManual.html#credential][Hadoop Credential Command Reference]] for more information about this facility).  The cputil script in the 'bin' directory can be leveraged to create the password store required.
+
+To create the credential provdier for Atlas:
+
+   * cd to the '<code>bin</code>' directory
+   * type '<code>./cputil.sh</code>'
+   * Enter the path for the generated credential provider.  The format for the path is:
+      * jceks://file/local/file/path/file.jceks or jceks://hdfs@namenodehost:port/path/in/hdfs/to/file.jceks.  The files generally use the ".jceks" extension (e.g. test.jceks)
+   * Enter the passwords for the keystore, truststore, and server key (these passwords need to match the ones utilized for actually creating the associated certificate store files).
+	
+	The credential provider will be generated and saved to the path provided.
+
+---+++ Service Authentication
+
+The Atlas platform, upon startup, is associated to an authenticated identity.  By default, in an insecure environment, that identity is the same as the OS authenticated user launching the server.  However, in a secure cluster leveraging kerberos, it is considered a best practice to configure a keytab and principal in order for the platform to authenticate to the KDC. This allows the service to subsequently interact with other secure cluster services (e.g. HDFS).
+
+The properties for configuring service authentication are:
+
+   * <code>atlas.authentication.method</code> (simple|kerberos) [default: simple] - the authentication method to utilize.  Simple will leverage the OS authenticated identity and is the default mechanism.  'kerberos' indicates that the service is required to authenticate to the KDC leveraging the configured keytab and principal.
+   * <code>atlas.authentication.keytab</code> - the path to the keytab file.
+   * <code>atlas.authentication.principal</code> - the principal to use for authenticating to the KDC.  The principal is generally of the form "user/host@realm".  You may use the '_HOST' token for the hostname and the local hostname will be substituted in by the runtime (e.g. "Atlas/_HOST@EXAMPLE.COM").
+
+Note that when Atlas is configured with HBase as the storage backend in a secure cluster, the graph db (titan) needs sufficient user permissions to be able to create and access an HBase table.  To grant the appropriate permissions see [[Configuration][Graph persistence engine - Hbase]].
+
+---+++ JAAS configuration
+
+When Atlas is configured with HBase as the storage backend in a secure cluster, a JAAS configuration file should be created and specified so that the HBase client can attempt to SASL-authenticate.
+
+   * Create Atlas JAAS configuration file (e.g. /etc/atlas/conf/atlas-jaas.conf).
+
+<verbatim>
+	Client {
+	   com.sun.security.auth.module.Krb5LoginModule required
+	   useKeyTab=true
+	   useTicketCache=false
+	   storeKey=true
+	   doNotPrompt=false
+	   keyTab="<atlas keytab>"
+	   principal="<atlas principal>";
+	};
+</verbatim>
+
+   * Update Atlas METADATA_OPTS to include ‘java.security.auth.login.config’ set to the above Atlas JAAS configuration file.
+      * For example, <code>-Djava.security.auth.login.config=/etc/atlas/conf/atlas-jaas.conf</code>
+
+---+++ SPNEGO-based HTTP Authentication
+
+HTTP access to the Atlas platform can be secured by enabling the platform's SPNEGO support.  There are currently two supported authentication mechanisms:
+
+   * <code>simple</code> - authentication is performed via a provided user name
+   * <code>kerberos</code> - the KDC authenticated identity of the client is leveraged to authenticate to the server
+	
+The kerberos support requires the client accessing the server to first authenticate to the KDC (usually this is done via the 'kinit' command).  Once authenticated, the user may access the server (the authenticated identity will be related to the server via the SPNEGO negotiation mechanism).
+
+The properties for configuring the SPNEGO support are:
+
+   * <code>atlas.http.authentication.enabled</code> (true|false) [default: false] - a property indicating whether to enable HTTP authentication
+   * <code>atlas.http.authentication.type</code> (simple|kerberos) [default: simple] - the authentication type
+   * <code>atlas.http.authentication.kerberos.principal</code> - the web-application Kerberos principal name. The Kerberos principal name must start with "HTTP/...". For example: "HTTP/localhost@LOCALHOST". There is no default value.
+   * <code>atlas.http.authentication.kerberos.keytab</code> - the path to the keytab file containing the credentials for the kerberos principal.
+   * <code>atlas.rest.address</code> - <http/https>://<atlas-fqdn>:<atlas port>
+
+For a more detailed discussion of the HTTP authentication mechanism refer to [[http://hadoop.apache.org/docs/stable/hadoop-auth/Configuration.html][Hadoop Auth, Java HTTP SPNEGO 2.6.0 - Server Side Configuration]].  The prefix that document references is "atlas.http.authentication" in the case of the Atlas authentication implementation.
+
+---+++ Client security configuration
+
+When leveraging Atlas client code to communicate with an Atlas server configured for SSL transport and/or Kerberos authentication, there is a requirement to provide a client configuration file that provides the security properties that allow for communication with, or authenticating to, the server.
+Create a client.properties file with the appropriate settings (see below) and place it on the client's classpath or in the directory specified by the "atlas.conf" system property.
+
+The client properties for SSL communication are:
+
+   * <code>atlas.enableTLS</code> (false|true) [default: false] - enable/disable the SSL client communication infrastructure.
+   * <code>keystore.file</code> - the path to the keystore file leveraged by the client.  This file is only required if 2-Way SSL is enabled at the server and contains the client certificate.
+   * <code>truststore.file</code> - the path to the truststore file. This file contains the certificates of trusted entities (e.g. the certificates for the server or a shared certification authority). This file is required for both one-way or two-way SSL.
+   * <code>cert.stores.credential.provider.path</code> - the path to the Credential Provider store file.  The passwords for the keystore, truststore, and client certificate are maintained in this secure file.
+
+The property required for authenticating to the server (if authentication is enabled):
+
+   * <code>atlas.http.authentication.type</code> (simple|kerberos) [default: simple] - the authentication type
+
+If the authentication type specified is 'kerberos', then the kerberos ticket cache will be accessed for authenticating to the server (Therefore the client is required to authenticate to the KDC prior to communication with the server using 'kinit' or a similar mechanism).
+
+
+
+

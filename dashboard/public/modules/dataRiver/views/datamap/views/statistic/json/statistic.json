@@ -1,0 +1,267 @@
+{
+  "statisticText": [
+    {"title": "数据库", "count": "20/20", "link": ".database"},
+    {"title": "数据表", "count": "10/20", "link": ".dataTable"},
+    {"title": "字段", "count": "10/20",  "link": ".wordSeg"},
+    {"title": "组织", "count": "10/20", "link": ".organization"},
+    {"title": "作业", "count": "10/20", "link": ".task"},
+    {"title": "资源", "count": "20/20", "link": ".resource"}
+  ],
+  "databaseTableHead": [
+    {
+      "head": "库名称"
+    },
+    {
+      "head": "是否外部"
+    },
+    {
+      "head": "创建者"
+    },
+    {
+      "head": "创建时间"
+    },
+    {
+      "head": "组织"
+    },
+    {
+      "head": "所有者"
+    },
+    {
+      "head": "描述"
+    }
+  ],
+  "databaseTableRow": [
+    {
+      "col1": "人员信息库",
+      "col2": "否",
+      "col3": "",
+      "col4": "",
+      "col5": "财政厅",
+      "col6": "",
+      "col7": "",
+      "link": ".pepInfo"
+    },
+    {
+      "col1": "",
+      "col2": "",
+      "col3": "",
+      "col4": "",
+      "col5": "",
+      "col6": "",
+      "col7": ""
+    }
+  ],
+  "pepInfoTable1": [
+    {
+      "head1": "名称",
+      "col1": "人员信息",
+      "head2": "创建时间",
+      "col2": ""
+    },
+    {
+      "head1": "描述",
+      "col1": "人员",
+      "head2": "上次修改时间",
+      "col2": ""
+    },
+    {
+      "head1": "组织",
+      "col1": "公安厅",
+      "head2": "创建者",
+      "col2": ""
+    },
+    {
+      "head1": "是否外部源",
+      "col1": "",
+      "head2": "上次使用",
+      "col2": ""
+    }
+  ],
+  "pepInfoButton": [
+    {
+      "name": "连接信息",
+      "clazz": "btn btn-info btn-block",
+      "link": ".linkInfo"
+    },
+    {
+      "name": "血缘信息",
+      "clazz": "btn btn-danger btn-block",
+      "link": ".lineageInfo"
+    },
+    {
+      "name": "数据表",
+      "clazz": "btn btn-success btn-block",
+      "link": ".dataTable"
+    },
+    {
+      "name": "任务信息",
+      "clazz": "btn btn-primary btn-block",
+      "link": ".taskInfo"
+    },
+    {
+      "name": "统计信息",
+      "clazz": "btn btn-warning btn-block",
+      "link": ".statisticInfo"
+    },
+    {
+      "name": "资源汇总",
+      "clazz": "btn btn-default btn-block",
+      "link": ".resourceCollect"
+    },
+    {
+      "name": "资源包",
+      "clazz": "btn btn-success btn-block",
+      "link": ""
+    },
+    {
+      "name": "返回",
+      "clazz": "btn btn-default btn-block",
+      "link": "dataRiver.dataMap.statistic.database"
+    }
+  ],
+  "pepInfoLinkInfo": [
+    {
+      "head": "连接名称",
+      "row": ""
+    },
+    {
+      "head": "IP地址",
+      "row": ""
+    },
+    {
+      "head": "端口号",
+      "row": ""
+    },
+    {
+      "head": "用户",
+      "row": ""
+    }
+  ],
+  "pepInfoDataTable": [
+    {
+      "head": "表名称",
+      "col": "人员信息表"
+    },
+    {
+      "head": "组织",
+      "col": ""
+    },
+    {
+      "head": "描述信息",
+      "col": ""
+    }
+  ],
+  "pepInfoTaskInfo": [
+    {
+      "head": "任务名称",
+      "col1": ""
+    },
+    {
+      "head": "输入输出",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+
+    },
+    {
+      "head": "时间",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "任务类型",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    }
+  ],
+  "pepInfoStatisticInfo": [
+    {
+      "head": "位置",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "行数",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+
+    },
+    {
+      "head": "列数",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "任务使用数",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "产出数",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "大小",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    }
+  ],
+  "pepInfoResourceCollect": [
+    {
+      "head": "资源名称",
+      "col1": "jackson-mapper-asl-1.9.13.jar",
+      "col2": "是",
+      "col3": "",
+      "col4": "",
+      "col5": "财政厅",
+      "col6": "",
+      "col7": ""
+    },
+    {
+      "head": "类型",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+
+    },
+    {
+      "head": "所在的库",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "创建时间",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "组织",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "所有者",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    },
+    {
+      "head": "描述",
+      "col1": "",
+      "col2": "",
+      "col3": ""
+    }
+  ]
+}

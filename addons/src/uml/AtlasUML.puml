@@ -1,0 +1,661 @@
+@startuml
+
+package InnerSuperTypes #LightGreen {
+    class Infrastructure {
+        name : String
+        description : String
+    }
+
+    class DataSet {
+        name : String
+        description : String
+    }
+
+    class Process {
+        name : String
+        description : String
+        inputs : array<DataSet>
+        outputs : array<DataSet>
+    }
+
+    class Referenceable {
+        qualifiedName : String
+    }
+
+    Process --> DataSet : inputs >
+    Process --> DataSet : outputs >
+}
+
+package HiveDataTypes #Plum {
+    enum hive_object_type {
+        GLOBAL
+        DATABASE
+        TABLE
+        PARTITION
+        COLUMN
+    }
+    enum hive_principal_type {
+        USER
+        ROLE
+        GROUP
+    }
+    enum hive_resource_type {
+        JAR
+        FILE
+        ARCHIVE
+    }
+
+    class hive_serde << (S,orchid) >> {
+        name : String
+        serializationLib : String
+        parameters : Map<String, String>
+    }
+    class hive_order << (S,orchid) >> {
+        col : String
+        order : Int
+    }
+    class hive_resourceuri << (S,orchid) >> {
+        resourceType : hive_resource_type
+        uri : Int
+    }
+
+    class hive_db {
+        name : String
+        clusterName : String
+        description : String
+        locationUri : String
+        parameters : Map<String, String>
+        ownerName : String
+        ownerType : hive_principal_type
+    }
+    class hive_storagedesc {
+        cols : array<hive_column>
+        location : String
+        inputFormat : String
+        outputFormat : String
+        compressed : Boolean
+        numBuckets : Int
+        serdeInfo : hive_serde
+        bucketCols : array<String>
+        sortCols : array<hive_order>
+        parameters : Map<String, String>
+        storedAsSubDirectories : Boolean
+    }
+    class hive_table {
+        tableName : String
+        db : hive_db
+        owner : String
+        createTime : Long
+        lastAccessTime : Long
+        comment : String
+        retention : Int
+        sd : hive_storagedesc
+        partitionKeys : array<hive_column>
+        columns : array<hive_column>
+        parameters : Map<String, String>
+        viewOriginalText : String
+        viewExpandedText : String
+        tableType : String
+        temporary : Boolean
+    }
+    class hive_column {
+        name : String
+        type : String
+        comment : String
+    }
+    class hive_partition {
+        values : array<String>
+        table : hive_table
+        createTime : Long
+        lastAccessTime : Long
+        sd : hive_storagedesc
+        columns : array<hive_column>
+        parameters : Map<String, String>
+    }
+    class hive_role {
+        roleName : String
+        createTime : Long
+        ownerName : String
+    }
+    class hive_type {
+        name : String
+        type1 : String
+        type2 : String
+        fields : array<hive_column>
+    }
+    class hive_process {
+        startTime : Long
+        endTime : Long
+        userName : String
+        operationType : String
+        queryText : String
+        queryPlan : String
+        queryId : String
+        queryGraph : String
+    }
+
+    hive_resourceuri --> hive_resource_type : resourceType >
+    hive_db --> hive_principal_type : ownerType >
+    hive_storagedesc --> hive_column : cols >
+    hive_storagedesc --> hive_serde : serdeInfo >
+    hive_storagedesc --> hive_order : sortCols >
+    hive_table --> hive_db : db >
+    hive_table --> hive_storagedesc : sd >
+    hive_table --> hive_column : partitionKeys >
+    hive_table --> hive_column : columns >
+    hive_partition --> hive_table : table >
+    hive_partition --> hive_storagedesc : sd >
+    hive_partition --> hive_column : columns >
+    hive_type --> hive_column : fields >
+
+    Referenceable <|-- hive_db
+    Referenceable <|-- hive_storagedesc
+    DataSet <|-- hive_table
+    Referenceable <|-- hive_column
+    Referenceable <|-- hive_partition
+    Process <|-- hive_process
+}
+
+package CoreDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum AtlasMetaSourceType {
+        DXT
+        WORKFLOW
+        ODPS
+    }
+
+    class DataElement {
+        qualifiedName : String
+        metaSource : AtlasMetaSourceType
+    }
+
+    DataElement -> AtlasMetaSourceType : metaSource >
+}
+
+package LineageDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum LineageDependType {
+        SIMPLE
+        EXPRESSION
+        SCRIPT
+    }
+
+    class LineageDependency << (S,orchid) >> {
+        function : String
+        dependencyType : LineageDependType
+    }
+    class LineageProcessInfo {
+        name : String
+    }
+    class LineageTaskProcessInfo {
+        inputs : array<DataTable>
+        outputs : array<DataTable>
+        inputDbs : array<DataContainer>
+        outputDbs : array<DataContainer>
+        fieldMaps : array<LineageTaskFieldMap>
+    }
+    class LineageStepProcessInfo {
+        inputs : array<DataTable>
+        outputs : array<DataTable>
+        inputDbs : array<DataContainer>
+        outputDbs : array<DataContainer>
+        fieldMaps : array<LineageStepFieldMap>
+    }
+    class LineageFieldMap {
+        dependencyInfo : LineageDependency
+    }
+    class LineageTaskFieldMap {
+        sourceFields : array<DataField>
+        targetField : DataField
+    }
+    class LineageStepFieldMap {
+        sourceFields : array<DataField>
+        targetField : DataField
+    }
+
+    LineageDependency --> LineageDependType : dependencyType >
+    LineageFieldMap --> LineageDependency : dependencyInfo >
+
+    LineageTaskProcessInfo -> LineageTaskFieldMap : fieldMaps >
+    LineageTaskProcessInfo --> DataTable : inputs >
+    LineageTaskProcessInfo --> DataTable : inputs >
+    LineageTaskProcessInfo --> DataContainer : inputDbs >
+    LineageTaskProcessInfo --> DataContainer : outputDbs >
+    LineageStepProcessInfo -> LineageStepFieldMap : fieldMaps >
+    LineageStepProcessInfo --> DataTable : inputs >
+    LineageStepProcessInfo --> DataTable : inputs >
+    LineageStepProcessInfo --> DataContainer : inputDbs >
+    LineageStepProcessInfo --> DataContainer : outputDbs >
+
+    LineageProcessInfo <|-- LineageTaskProcessInfo
+    LineageProcessInfo <|-- LineageStepProcessInfo
+
+    LineageFieldMap <|-- LineageTaskFieldMap
+    LineageFieldMap <|-- LineageStepFieldMap
+
+}
+
+package RelationalDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum DataContainerType {
+        ODPS
+        RDS
+        HDFS
+        HIVE
+        ORACLE
+        SQLSERVER
+        MYSQL
+        DB2
+        ADS
+        SYBASE
+        TERADATA
+        POSTGRESQL
+    }
+
+    enum DataContainerStatus {
+        AVAILABLE
+        READONLY
+        DELETING
+        FROZEN
+        UNKNOWN
+    }
+
+    class DBAccess {
+        name : String
+        description : String
+    }
+    class DataField {
+        name : String
+        description : String
+        dataType : String
+    }
+    class DataTable {
+        name : String
+        description : String
+        database : DataContainer
+        fields : array<DataField>
+    }
+    class DataContainer {
+        name : String
+        description : String
+        dbType : DataContainerType
+        id : String
+        tag : String
+        status : DataContainerStatus
+        accessInfo : DBAccess
+    }
+
+    DataContainer --> DataContainerType : dbType >
+    DataContainer --> DataContainerStatus : status >
+    DataContainer --> DBAccess : accessInfo >
+    DataTable -> DataContainer : database >
+    DataTable --> DataField : fields >
+
+    DataElement <|- DBAccess
+    DataElement <|-- DataField
+    DataElement <|- DataContainer
+    DataElement <|-- DataTable
+}
+
+package TransformDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum ETLTaskType {
+        GRAPH
+        LOT
+        SQLPLAN
+        SQL
+        XLIB
+        SQLCOST
+        STREAM
+        MOYE
+        GALAXY
+    }
+    enum ETLTaskStatus {
+        WAITING
+        RUNNING
+        SUCCESS
+        FAILED
+        SUSPENDED
+        CANCELLED
+        SCHEDULE
+        TERMINATED
+    }
+    enum ETLStepType {
+        TABLE_INPUT
+        TABLE_OUTPUT
+        ODPS_INPUT
+        ODPS_OUTPUT
+        HDFS_INPUT
+        HDFS_OUTPUT
+    }
+    enum ETLInstanceStatus {
+        RUNNING
+        SUSPENDED
+        TERMINATED
+    }
+
+    class AbstractProcess {
+        name : String
+        description : String
+    }
+    class ETLInstance {
+        name : String
+        description : String
+        id : String
+        tasks : array<ETLTask>
+        tasksDAG : array<ETLStepSequence>
+        status : ETLInstanceStatus
+    }
+    class ETLTask {
+        status : ETLTaskStatus
+        lineage : LineageTaskProcessInfo
+        steps : array<ETLStep>
+        stepsDAG : array<ETLStepSequence>
+        id : String
+        type : ETLTaskType
+        queryText : String
+    }
+    class ETLStepSequence {
+        preceding : AbstractProcess
+        succeeding : AbstractProcess
+        kind : String
+    }
+    class ETLStep {
+        lineage : LineageStepProcessInfo
+        type : ETLStepType
+        queryText : String
+    }
+
+    ETLStep --> LineageStepProcessInfo : lineage >
+    ETLStep --> ETLStepType : type >
+    ETLStepSequence --> AbstractProcess : preceding >
+    ETLStepSequence --> AbstractProcess : succeeding >
+    ETLTask -> ETLTaskStatus : status >
+    ETLTask --> LineageTaskProcessInfo : lineage >
+    ETLTask --> ETLStep : steps >
+    ETLTask --> ETLStepSequence : stepsDAG >
+    ETLTask --> ETLTaskType : type >
+    ETLInstance --> ETLTask : tasks >
+    ETLInstance --> ETLStepSequence : tasksDAG >
+    ETLInstance -> ETLInstanceStatus : status >
+
+    DataElement <|- AbstractProcess
+    DataElement <|- ETLInstance
+    AbstractProcess <|--- ETLStep
+    AbstractProcess <|- ETLTask
+}
+
+package DxtDataTypes #GreenYellow/LightGoldenRodYellow {
+    class GeneralAccInfo {
+        host : String
+        port : Int
+        version : Float
+    }
+    class TransInstance {
+        lastExecuteTime : Long
+        runTimes : Int
+        successTimes : Int
+        failTimes : Int
+    }
+    class TransStep {
+        db : DataContainer
+    }
+
+    TransStep -> DataContainer : db >
+
+    DBAccess <|-- GeneralAccInfo
+    ETLInstance <|-- TransInstance
+    ETLStep <|-- TransStep
+}
+
+package OdpsDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum OdpsObjectType {
+        GLOBAL
+        PROJECT
+        TABLE
+        PARTITION
+        COLUMN
+    }
+    enum OdpsResourceType {
+        FILE
+        JAR
+        PY
+        ARCHIVE
+        TABLE
+        VOLUMEFILE
+        UNKNOWN
+    }
+    enum OdpsObjectPrivilege {
+        READ
+        WRITE
+        LIST
+        CREATETABLE
+        CREATEFUNCTION
+        CREATERESOURCE
+        CREATEJOB
+        DESCRIBE
+        SELECT
+        ALTER
+        UPDATE
+        DROP
+        DELETE
+        EXECUTE
+        ALL
+    }
+    enum OdpsPackageResourceType {
+        FUNC
+        TABLE
+        RESOURCE
+        INSTANCE
+    }
+
+    class OdpsAccInfo {
+        tunnelURL : String
+        endpointURL : String
+    }
+    class OdpsProject {
+        owner : String
+        createTime : Long
+        lastModifiedTime : Long
+        projectGroupname : Long
+        clusterQuota : String
+        clusterName : String
+    }
+    class OdpsColumn {
+        isPartitionKey : Boolean
+        label : String
+    }
+    class OdpsPartition {
+        name : String
+        table : OdpsTable
+        createTime : Long
+        lastModifiedTime : Long
+        columns : array<OdpsColumn>
+        numRecord : Long
+        numStorage : Long
+    }
+    class OdpsTable {
+        owner : String
+        lifeCycle : Int
+        origination : String
+        tableType : String
+        isPartitioned : Boolean
+        storageVolume : Long
+        incementVolume : Long
+        netIncrementVolume : Long
+        createTime : Long
+        lastModifiedTime : Long
+        partitionKeys : array<OdpsColumn>
+    }
+    class OdpsResource {
+        name : String
+        project : OdpsProject
+        owner : String
+        createTime : Long
+        lastModifiedTime : Long
+        resourceType : OdpsResourceType
+        description : String
+    }
+    class OdpsPackageResourceItem {
+        type : OdpsPackageResourceType
+        name : String
+        privileges : array<OdpsObjectPrivilege>
+        resource : DataElement
+    }
+    class OdpsPackage {
+        ownerProject : OdpsProject
+        name : String
+        createTime : Long
+        installTime : Long
+        assignedProjects : array<OdpsProject>
+        resources : array<OdpsPackageResourceItem>
+    }
+    class OdpsTask {
+        queryPlan : String
+    }
+    class OdpsInstance {
+        owner : String
+        createTime : Long
+        startTime : Long
+        endTime : Long
+        project : OdpsProject
+    }
+
+
+    OdpsPackageResourceItem --> OdpsPackageResourceType : type >
+    OdpsPackageResourceItem --> OdpsObjectPrivilege : privileges >
+    OdpsPackageResourceItem --> DataElement : resource >
+    OdpsPartition --> OdpsTable : table >
+    OdpsPartition --> OdpsColumn : columns >
+    OdpsInstance --> OdpsProject : project >
+    OdpsTable --> OdpsColumn : partitionKeys >
+    OdpsResource --> OdpsProject : project >
+    OdpsResource --> OdpsResourceType : resourceType >
+    OdpsPackage --> OdpsProject : ownerProject >
+    OdpsPackage --> OdpsProject : assignedProjects >
+    OdpsPackage --> OdpsPackageResourceItem : resources >
+
+    DataElement <|- OdpsPackage
+    DataContainer <|-- OdpsProject
+    DataField <|-- OdpsColumn
+    DBAccess <|-- OdpsAccInfo
+    DataTable <|-- OdpsTable
+    Referenceable <|-- OdpsPartition
+    Referenceable <|-- OdpsResource
+    Referenceable <|-- OdpsPackageResourceItem
+    ETLTask <|-- OdpsTask
+    ETLInstance <|-- OdpsInstance
+}
+
+package WorkFlowDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum WorkflowActionType {
+        ODPSMR
+        ODPSSQL
+        DXT
+        SUBFLOW
+        CTL_START
+        CTL_FORK
+        CTL_JOIN
+        CTL_KILL
+        CTL_END
+        SWITCH
+        SSH
+        EMAIL
+        MR
+        SQOOP
+        DISTCP
+        FS
+        HIVE
+        PIG
+        SHELL
+        START
+        END
+    }
+    enum WorkflowActionStatus {
+        PREP
+        RUNNING
+        OK
+        ERROR
+        USER_RETRY
+        START_RETRY
+        START_MANUAL
+        DONE
+        END_RETRY
+        END_MANUAL
+        KILLED
+        FAILED
+    }
+    enum WorkflowJobStatus {
+        PREP
+        RUNNING
+        SUCCEEDED
+        KILLED
+        FAILED
+        SUSPENDED
+    }
+    enum WorkflowJobRunTimeUnit {
+        MINUTE
+        HOUR
+        DAY
+        WEEK
+        MONTH
+        END_OF_DAY
+        END_OF_MONTH
+        CRON
+        NONE
+    }
+    class WorkflowAction {
+        type : WorkflowActionType
+        actionId : String
+        instanceId : String
+        etlInstance : ETLTask
+        workflowId : String
+        config : String
+        configId : String
+        startTime : Long
+        endTime : Long
+        status : WorkflowActionStatus
+    }
+    class WorkflowActionTemplate {
+        name : String
+        description : String
+        templateId : String
+        actions : array<WorkflowAction>
+        config : String
+        workflowActionName : String
+    }
+    class WorkflowJob {
+        name : String
+        description : String
+        workflowId : String
+        actions : array<WorkflowAction>
+        actionsDAG : array<ETLStepSequence>
+        config : String
+        createTime : Long
+        startTime : Long
+        endTime : Long
+        user : String
+        status : WorkflowJobStatus
+        parentId : String
+    }
+    class WorkflowTemplate {
+        name : String
+        description : String
+        templateId : String
+        workflowJobs : array<WorkflowJob>
+        config : String
+        workflowName : String
+    }
+
+    WorkflowAction -> WorkflowActionType : type >
+    WorkflowAction -> ETLTask : etlInstance >
+    WorkflowAction -> WorkflowActionStatus : status >
+    WorkflowActionTemplate -> WorkflowAction : actions >
+    WorkflowJob --> WorkflowAction : actions >
+    WorkflowJob -> ETLStepSequence : actionsDAG >
+    WorkflowJob -> WorkflowJobStatus : status >
+    WorkflowTemplate -> WorkflowJob : workflowJobs >
+
+    AbstractProcess <|-- WorkflowAction
+    Referenceable <|-- WorkflowActionTemplate
+    Referenceable <|- WorkflowJob
+    Referenceable <|- WorkflowTemplate
+}
+
+@enduml

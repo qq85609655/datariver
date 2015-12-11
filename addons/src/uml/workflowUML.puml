@@ -1,0 +1,125 @@
+@startuml
+
+
+package WorkFlowDataTypes #Plum {
+    enum WorkflowActionType {
+        ODPSMR
+        ODPSSQL
+        DXT
+        SUBFLOW
+        CTL_START
+        CTL_FORK
+        CTL_JOIN
+        CTL_KILL
+        CTL_END
+        SWITCH
+        SSH
+        EMAIL
+        MR
+        SQOOP
+        DISTCP
+        FS
+        HIVE
+        PIG
+        SHELL
+        START
+        END
+    }
+    enum WorkflowActionStatus {
+        PREP
+        RUNNING
+        OK
+        ERROR
+        USER_RETRY
+        START_RETRY
+        START_MANUAL
+        DONE
+        END_RETRY
+        END_MANUAL
+        KILLED
+        FAILED
+    }
+    enum WorkflowJobStatus {
+        PREP
+        RUNNING
+        SUCCEEDED
+        KILLED
+        FAILED
+        SUSPENDED
+    }
+    enum WorkflowJobRunTimeUnit {
+        MINUTE
+        HOUR
+        DAY
+        WEEK
+        MONTH
+        END_OF_DAY
+        END_OF_MONTH
+        CRON
+        NONE
+    }
+    class WorkflowAction {
+        type : WorkflowActionType
+        actionId : String
+        instanceId : String
+        etlInstance : ETLTask
+        workflowId : String
+        config : String
+        configId : String
+        startTime : Long
+        endTime : Long
+        status : WorkflowActionStatus
+    }
+    class WorkflowActionTemplate {
+        name : String
+        description : String
+        templateId : String
+        actions : array<WorkflowAction>
+        config : String
+        workflowActionName : String
+    }
+    class WorkflowJob {
+        name : String
+        description : String
+        workflowId : String
+        actions : array<WorkflowAction>
+        actionsDAG : array<ETLStepSequence>
+        config : String
+        createTime : Long
+        startTime : Long
+        endTime : Long
+        user : String
+        status : WorkflowJobStatus
+        parentId : String
+    }
+    class WorkflowTemplate {
+        name : String
+        description : String
+        templateId : String
+        workflowJobs : array<WorkflowJob>
+        config : String
+        workflowName : String
+        lineage : LineageWorkflowProcessInfo
+    }
+
+    WorkflowAction -> WorkflowActionType : type >
+    WorkflowAction -> ETLTask : etlInstance >
+    WorkflowAction -> WorkflowActionStatus : status >
+    WorkflowActionTemplate -> WorkflowAction : actions >
+    WorkflowJob --> WorkflowAction : actions >
+    WorkflowJob -> ETLStepSequence : actionsDAG >
+    WorkflowJob -> WorkflowJobStatus : status >
+    WorkflowTemplate -> WorkflowJob : workflowJobs >
+    WorkflowTemplate -> LineageWorkflowProcessInfo : lineage >
+
+    AbstractProcess <|-- WorkflowAction
+    Referenceable <|-- WorkflowActionTemplate
+    Referenceable <|- WorkflowJob
+    Referenceable <|- WorkflowTemplate
+}
+
+
+
+
+@enduml
+

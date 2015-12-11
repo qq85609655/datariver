@@ -1,0 +1,73 @@
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one
+  ~ or more contributor license agreements.  See the NOTICE file
+  ~ distributed with this work for additional information
+  ~ regarding copyright ownership.  The ASF licenses this file
+  ~ to you under the Apache License, Version 2.0 (the
+  ~ "License"); you may not use this file except in compliance
+  ~ with the License.  You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<enunciate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="http://enunciate.codehaus.org/schemas/enunciate-1.29.xsd">
+    <api-import pattern="org.apache.atlas.web.resources.*"/>
+    <services>
+        <rest defaultRestSubcontext="/api/atlas/">
+            <custom-resource-parameter-annotation
+                    qualifiedName="org.glassfish.jersey.media.multipart.FormDataParam"/>
+        </rest>
+    </services>
+
+    <deployment protocol="http" host="localhost:21000" context=""/>
+
+    <webapp disabled="true"/>
+    <modules>
+        <disable-rule id="csharp.warnings"/>
+        <disable-rule id="c.warnings"/>
+        <disable-rule id="obj-c.warnings"/>
+        <!--
+        打开的module: docs, jaxws, jaxws-support, cxf, xml
+        关闭的module: c, csharp, java-client, jaxws-client, jaxws-ri, jersey, obj-c, basic-app, amf, gwt, jboss, object-c, rubby
+        -->
+        <docs
+                docsDir="apidocs"
+                splashPackage="org.apache.atlas.web.resources"
+                copyright="杭州数梦工场科技有限公司"
+                title="元数据管理REST API"
+                includeDefaultDownloads="true"
+                includeExampleXml="true"
+                includeExampleJson="true"
+                disableRestMountpoint="true"
+                forceExampleJson="true"
+                freemarkerXMLProcessingTemplate="docs.fmt"
+                >
+        </docs>
+        <basic-app disabled="true"/>
+        <c disabled="true"/>
+        <csharp disabled="true"/>
+        <jaxws-ri disabled="true"/>
+        <jersey disabled="true"/>
+        <obj-c disabled="true"/>
+        <amf disabled="true"/>
+        <gwt disabled="true"/>
+        <jboss disabled="true"/>
+        <object-c disabled="true"/>
+        <rubby disabled="true"/>
+        <java-client disabled="true"/>
+        <jaxws-client disabled="true"/>
+        <xml forceExampleJson="true"/>
+        <jaxws-support disabled="false"/>
+        <cxf disabled="false" enableJaxrs="true" enableJaxws="true"/>
+        <jaxws disabled="false"/>
+
+        <swagger disabled="false"/>
+    </modules>
+</enunciate>

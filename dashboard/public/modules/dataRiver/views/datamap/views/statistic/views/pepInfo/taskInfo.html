@@ -1,0 +1,25 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/12 20:24
+-->
+<div class="col-lg-10">
+    <table class="table table-bordered table-striped mt25px">
+        <thead>
+        <tr>
+            <th class="col-md-3"ng-repeat="taskInfoHead in statisticResData.pepInfoTaskInfo">{{taskInfoHead.head}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="taskInfoCol in statisticResData.pepInfoTaskInfo">
+            <td>{{taskInfoCol.col1}}</td>
+            <td>{{taskInfoCol.col2}}</td>
+            <td>{{taskInfoCol.col3}}</td>
+            <td>{{taskInfoCol.col4}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

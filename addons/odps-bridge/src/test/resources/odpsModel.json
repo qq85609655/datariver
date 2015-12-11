@@ -1,0 +1,665 @@
+{
+  "enumTypes":[
+    {
+      "name": "OdpsObjectPrivilege",
+      "enumValues": [
+        {
+          "value": "READ",
+          "ordinal": 1
+        },
+        {
+          "value": "WRITE",
+          "ordinal": 2
+        },
+        {
+          "value": "LIST",
+          "ordinal": 3
+        },
+        {
+          "value": "CREATETABLE",
+          "ordinal": 4
+        },
+        {
+          "value": "CREATEFUNCTION",
+          "ordinal": 5
+        },
+        {
+          "value": "CREATERESOURCE",
+          "ordinal": 6
+        },
+        {
+          "value": "CREATEJOB",
+          "ordinal": 7
+        },
+        {
+          "value": "DESCRIBE",
+          "ordinal": 8
+        },
+        {
+          "value": "SELECT",
+          "ordinal": 9
+        },
+        {
+          "value": "ALTER",
+          "ordinal": 10
+        },
+        {
+          "value": "UPDATE",
+          "ordinal": 11
+        },
+        {
+          "value": "DROP",
+          "ordinal": 12
+        },
+        {
+          "value": "DELETE",
+          "ordinal": 13
+        },
+        {
+          "value": "EXECUTE",
+          "ordinal": 14
+        },
+        {
+          "value": "ALL",
+          "ordinal": 15
+        }
+      ]
+    },
+    {
+      "name": "OdpsPackageResourceType",
+      "enumValues": [
+        {
+          "value": "FUNC",
+          "ordinal": 1
+        },
+        {
+          "value": "TABLE",
+          "ordinal": 2
+        },
+        {
+          "value": "RESOURCE",
+          "ordinal": 3
+        },
+        {
+          "value": "INSTANCE",
+          "ordinal": 4
+        }
+      ]
+    },
+    {
+      "name":"OdpsResourceType",
+      "enumValues":[
+        {
+          "value":"FILE",
+          "ordinal":1
+        },
+        {
+          "value":"JAR",
+          "ordinal":2
+        },
+        {
+          "value":"PY",
+          "ordinal":3
+        },
+        {
+          "value":"ARCHIVE",
+          "ordinal":4
+        },
+        {
+          "value":"TABLE",
+          "ordinal":5
+        },
+        {
+          "value":"VOLUMEFILE",
+          "ordinal":6
+        },
+        {
+          "value":"UNKNOWN",
+          "ordinal":7
+        }
+      ]
+    },
+    {
+      "name":"OdpsObjectType",
+      "enumValues":[
+        {
+          "value":"GLOBAL",
+          "ordinal":1
+        },
+        {
+          "value":"PROJECT",
+          "ordinal":2
+        },
+        {
+          "value":"TABLE",
+          "ordinal":3
+        },
+        {
+          "value":"PARTITION",
+          "ordinal":4
+        },
+        {
+          "value":"COLUMN",
+          "ordinal":5
+        }
+      ]
+    }
+  ],
+  "structTypes":[
+
+  ],
+  "traitTypes":[
+
+  ],
+  "classTypes":[
+    {
+      "superTypes": [
+        "DataElement"
+      ],
+      "hierarchicalMetaTypeName": "org.apache.atlas.typesystem.types.ClassType",
+      "typeName": "OdpsPackage",
+      "attributeDefinitions": [
+        {
+          "name": "ownerProject",
+          "dataTypeName": "OdpsProject",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "name",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "createTime",
+          "dataTypeName": "long",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "installTime",
+          "dataTypeName": "long",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "assignedProjects",
+          "dataTypeName": "array<OdpsProject>",
+          "multiplicity": "optional",
+          "isComposite": true,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "resources",
+          "dataTypeName": "array<OdpsPackageResourceItem>",
+          "multiplicity": "optional",
+          "isComposite": true,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        }
+      ]
+    },
+    {
+      "attributeDefinitions": [
+          {
+            "isUnique": false,
+            "name": "type",
+            "isIndexable": true,
+            "multiplicity": "required",
+            "dataTypeName": "OdpsPackageResourceType",
+            "isComposite": false
+          },
+          {
+            "isUnique": false,
+            "name": "name",
+            "isIndexable": true,
+            "multiplicity": "optional",
+            "dataTypeName": "string",
+            "isComposite": false
+          },
+          {
+            "isUnique": false,
+            "name": "privileges",
+            "isIndexable": true,
+            "multiplicity": "required",
+            "dataTypeName": "array<OdpsObjectPrivilege>",
+            "isComposite": true
+          },
+          {
+            "isUnique": false,
+            "name": "resource",
+            "isIndexable": true,
+            "multiplicity": "optional",
+            "dataTypeName": "DataElement",
+            "isComposite": false
+          }
+      ],
+      "typeName": "OdpsPackageResourceItem",
+      "hierarchicalMetaTypeName": "org.apache.atlas.typesystem.types.ClassType",
+      "superTypes": [
+        "DataElement"
+      ]
+    },
+    {
+      "superTypes":[
+        "DataElement"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsResource",
+      "attributeDefinitions":[
+        {
+          "name":"name",
+          "dataTypeName":"string",
+          "multiplicity":"required",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"project",
+          "dataTypeName":"OdpsProject",
+          "multiplicity":"required",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"owner",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"createTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"lastModifiedTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"resourceType",
+          "dataTypeName":"OdpsResourceType",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"description",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    },
+    {
+      "superTypes":[
+        "ETLTask"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsTask",
+      "attributeDefinitions":[
+        {
+          "name":"queryPlan",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    },
+    {
+      "superTypes":[
+        "DataField"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsColumn",
+      "attributeDefinitions":[
+        {
+          "name":"isPartitionKey",
+          "dataTypeName":"boolean",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"label",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    },
+    {
+      "superTypes":[
+        "DBAccess"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsAccInfo",
+      "attributeDefinitions":[
+        {
+          "name":"tunnelURL",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"endpointURL",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    },
+    {
+      "superTypes":[
+        "DataRowSet"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsPartition",
+      "attributeDefinitions":[
+        {
+          "name":"createTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"lastModifiedTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"numStorage",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    },
+    {
+      "superTypes":[
+        "ETLInstance"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsInstance",
+      "attributeDefinitions":[
+        {
+          "name":"owner",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"createTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"startTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"endTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"project",
+          "dataTypeName":"OdpsProject",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    },
+    {
+      "superTypes":[
+        "DataTable"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsTable",
+      "attributeDefinitions":[
+        {
+          "name":"owner",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"lifeCycle",
+          "dataTypeName":"int",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"origination",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"tableType",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"storageVolume",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"incementVolume",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"netIncrementVolume",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"createTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"lastModifiedTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    },
+    {
+      "superTypes":[
+        "DataContainer"
+      ],
+      "hierarchicalMetaTypeName":"org.apache.atlas.typesystem.types.ClassType",
+      "typeName":"OdpsProject",
+      "attributeDefinitions":[
+        {
+          "name":"owner",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"createTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"lastModifiedTime",
+          "dataTypeName":"long",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"projectGroupname",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"clusterQuota",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"clusterName",
+          "dataTypeName":"string",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"resources",
+          "dataTypeName":"array<DataElement>",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        },
+        {
+          "name":"packages",
+          "dataTypeName":"array<DataElement>",
+          "multiplicity":"optional",
+          "isComposite":false,
+          "isUnique":false,
+          "isIndexable":true,
+          "reverseAttributeName":null
+        }
+      ]
+    }
+  ]
+}

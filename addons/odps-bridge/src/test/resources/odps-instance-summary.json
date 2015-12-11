@@ -1,0 +1,128 @@
+{
+  "instanceMeta": {
+    "startTime": 1445237254000,
+    "id": "20151019064734467guuskdx5",
+    "createTime": 1445237254000,
+    "tasksDetail": [
+      {
+        "MRonSQL_144523723601604416757": {
+          "mapReduce": {
+            "summary": "resource cost: cpu 0.43 Core * Min, memory 0.65 GB * Min\ninputs:\n\tdtdream_hanwen.j0051_table1: 4 (888 bytes)\n\tdtdream_hanwen.j0051_table2/type=p1: 4 (888 bytes)\noutputs:\n\tdtdream_hanwen.j0051_countresult: 1 (552 bytes)\n\tdtdream_hanwen.j0051_result2/a=2/b=2: 10 (624 bytes)\n\tdtdream_hanwen.j0051_result2/a=1/b=1: 5 (576 bytes)\nJob run time: 18.000\nJob run mode: fuxi job\nM1_U1:\n\tinstance count: 1\n\trun time: 9.000\n\tinstance time:\n\t\tmin: 5.000, max: 5.000, avg: 5.000\n\tinput records:\n\t\tinput: 4  (min: 4, max: 4, avg: 4)\n\toutput records:\n\t\tR2_1: 20  (min: 20, max: 20, avg: 20)\n\twriter dumps:\n\t\tR2_1: (min: 0, max: 0, avg: 0)\nM1_U0:\n\tinstance count: 1\n\trun time: 9.000\n\tinstance time:\n\t\tmin: 4.000, max: 4.000, avg: 4.000\n\tinput records:\n\t\tinput: 4  (min: 4, max: 4, avg: 4)\n\toutput records:\n\t\tR2_1: 20  (min: 20, max: 20, avg: 20)\n\twriter dumps:\n\t\tR2_1: (min: 0, max: 0, avg: 0)\nR2_1:\n\tinstance count: 1\n\trun time: 18.000\n\tinstance time:\n\t\tmin: 4.000, max: 4.000, avg: 4.000\n\tinput records:\n\t\tinput: 20  (min: 20, max: 20, avg: 20)\n\t\tinput#1: 20  (min: 20, max: 20, avg: 20)\n\toutput records:\n\t\tR2_1FS_DataSink_18: 10  (min: 10, max: 10, avg: 10)\n\t\tR2_1FS_DataSink_12: 1  (min: 1, max: 1, avg: 1)\n\t\tR2_1FS_DataSink_15: 5  (min: 5, max: 5, avg: 5)\n\treader dumps:\n\t\tinput: (min: 0, max: 0, avg: 0)\n\t\tinput#1: (min: 0, max: 0, avg: 0)\n",
+            "jsonSummary": "{\"inputs\": {\"dtdream_hanwen.j0051_table1\": [4, 888], \"dtdream_hanwen.j0051_table2/type=p1\": [4, 888]}, \"jobs\": [{\"inputs\": {\"M1_U1\": 4, \"M1_U0\": 4}, \"tasks\": {\"M1_U1\": {\"writer_dumps\": {\"R2_1\": [0, 0, 0]}, \"planned_memory\": 3072, \"input_attrs\": {\"split\": 256}, \"user_counters\": {}, \"total_instance_run_time\": 5, \"output_record_counts\": {\"R2_1\": {\"R2_1\": 20}}, \"custom_info\": {\"StringMemoryPoolSize\": \"8392704\"}, \"input_record_counts\": {\"input\": 4}, \"writer_bytes\": {\"R2_1\": {\"R2_1\": 239}}, \"reader_dumps\": {}, \"input_record_count_stats\": {\"input\": [4, 4, 4]}, \"reader_bytes\": {\"input\": 888}, \"instance_run_times\": [5, 5, 5], \"output_record_count_stats\": {\"R2_1\": [20, 20, 20]}, \"task_run_time\": 9, \"planned_cpu\": 200, \"instance_count\": 1, \"output_bytes_stats\": {\"R2_1\": [239, 239, 239]}}, \"M1_U0\": {\"writer_dumps\": {\"R2_1\": [0, 0, 0]}, \"planned_memory\": 3072, \"input_attrs\": {\"split\": 256}, \"user_counters\": {}, \"total_instance_run_time\": 4, \"output_record_counts\": {\"R2_1\": {\"R2_1\": 20}}, \"custom_info\": {\"StringMemoryPoolSize\": \"8392704\"}, \"input_record_counts\": {\"input\": 4}, \"writer_bytes\": {\"R2_1\": {\"R2_1\": 239}}, \"reader_dumps\": {}, \"input_record_count_stats\": {\"input\": [4, 4, 4]}, \"reader_bytes\": {\"input\": 888}, \"instance_run_times\": [4, 4, 4], \"output_record_count_stats\": {\"R2_1\": [20, 20, 20]}, \"task_run_time\": 9, \"planned_cpu\": 200, \"instance_count\": 1, \"output_bytes_stats\": {\"R2_1\": [239, 239, 239]}}, \"R2_1\": {\"writer_dumps\": {}, \"planned_memory\": 3072, \"planned_cpu\": 200, \"user_counters\": {}, \"total_instance_run_time\": 4, \"output_record_counts\": {\"R2_1FS_DataSink_18\": {\"R2_1FS_DataSink_18\": 10}, \"R2_1FS_DataSink_12\": {\"R2_1FS_DataSink_12\": 1}, \"R2_1FS_DataSink_15\": {\"R2_1FS_DataSink_15\": 5}}, \"custom_info\": {}, \"input_record_counts\": {\"input\": 20, \"input#1\": 20}, \"writer_bytes\": {\"R2_1FS_DataSink_18\": {\"R2_1FS_DataSink_18\": 624}, \"R2_1FS_DataSink_12\": {\"R2_1FS_DataSink_12\": 552}, \"R2_1FS_DataSink_15\": {\"R2_1FS_DataSink_15\": 576}}, \"reader_dumps\": {\"input\": [0, 0, 0], \"input#1\": [0, 0, 0]}, \"input_record_count_stats\": {\"input\": [20, 20, 20], \"input#1\": [20, 20, 20]}, \"reader_bytes\": {\"input\": 239, \"input#1\": 239}, \"instance_run_times\": [4, 4, 4], \"output_record_count_stats\": {\"R2_1FS_DataSink_18\": [10, 10, 10], \"R2_1FS_DataSink_12\": [1, 1, 1], \"R2_1FS_DataSink_15\": [5, 5, 5]}, \"task_run_time\": 18, \"instance_count\": 1, \"output_bytes_stats\": {\"R2_1FS_DataSink_18\": [624, 624, 624], \"R2_1FS_DataSink_12\": [552, 552, 552], \"R2_1FS_DataSink_15\": [576, 576, 576]}}}, \"name\": \"dtdream_hanwen_20151023073807936gj3xor06_LOT_0_0_0_job0\", \"outputs\": {\"R2_1FS_DataSink_18\": 10, \"R2_1FS_DataSink_12\": 1, \"R2_1FS_DataSink_15\": 5}, \"new_counters\": {}, \"cost_cpu\": 2600, \"input_bytes\": {\"M1_U1\": 888, \"M1_U0\": 888}, \"output_bytes\": {\"R2_1FS_DataSink_18\": 624, \"R2_1FS_DataSink_12\": 552, \"R2_1FS_DataSink_15\": 576}, \"run_time\": 18, \"cost_memory\": 39936, \"run_mode\": \"fuxi job\"}], \"outputs\": {\"dtdream_hanwen.j0051_countresult\": [1, 552], \"dtdream_hanwen.j0051_result2/a=2/b=2\": [10, 624], \"dtdream_hanwen.j0051_result2/a=1/b=1\": [5, 576]}, \"cost_memory\": 39936, \"cost_cpu\": 2600, \"input_output\": {\"input\": {\"M1_U1\": \"dtdream_hanwen.j0051_table2/type=p1\", \"M1_U0\": \"dtdream_hanwen.j0051_table1\"}, \"output\": {\"FS_DataSink_15\": \"dtdream_hanwen.j0051_result2/a=1/b=1\", \"FS_DataSink_18\": \"dtdream_hanwen.j0051_result2/a=2/b=2\", \"FS_DataSink_12\": \"dtdream_hanwen.j0051_countresult\"}}}",
+            "jobs": [
+              {
+                "name": "dtdream_hanwen_20151019064734467guuskdx5_LOT_0_0_0_job0",
+                "tasks": [
+                  {
+                    "progress": 100,
+                    "total_instance_run_time": 0,
+                    "inputRecords": 4,
+                    "status": "Terminated",
+                    "fatalInstances": [],
+                    "planned_cpu": 0,
+                    "cost_cpu": 0,
+                    "cost_memory": 0,
+                    "endTime": 1445585908,
+                    "instances": [
+                      {
+                        "startTime": 1445585903,
+                        "output_records": 20,
+                        "id": "Odps/dtdream_hanwen_20151023073807936gj3xor06_LOT_0_0_0_job0/M1_U1#0_0",
+                        "status": "Terminated",
+                        "logId": "PU1UQXVNVE0xTGpFek1TNHpNaXhQWkhCekwyUjBaSEpsWVcxZmFHRnVkMlZ1WHpJd01UVXhNREl6TURjek9EQTNPVE0yWjJvemVHOXlNRFpmVEU5VVh6QmZNRjh3WDJwdllqQXZUVEZmVlRGQWNqRXpZakl4TURNeUxtUm5MbUZzYVhsMWJpNWpiMjBqTUE9YWJj",
+                        "gblCounter": "{\"Counters\":\"{\\\"CountersValue\\\":[]}\",\"CustomInfo\":{\"StringMemoryPoolSize\":\"8392704\",\"UserCounters\":\"{}\"},\"InputCounters\":{\"input\":{\"bytes\":888,\"records\":4}},\"OutputCounters\":{\"R2_1\":{\"bytes\":239,\"dumps\":0,\"records\":20}},\"PanguReadBytes\":[0,909,0,0],\"PanguWriteBytes\":[0,0,0,0]}",
+                        "finishedPercentage": 100,
+                        "input_bytes": 0,
+                        "input_records": 0,
+                        "endTime": 1445585908,
+                        "output_bytes": 0
+                      }
+                    ],
+                    "startTime": 1445585899,
+                    "outputRecords": 20,
+                    "name": "M1_U1",
+                    "instanceCount": 1,
+                    "planned_memory": 0
+                  },
+                  {
+                    "progress": 100,
+                    "total_instance_run_time": 0,
+                    "inputRecords": 4,
+                    "status": "Terminated",
+                    "fatalInstances": [],
+                    "planned_cpu": 0,
+                    "cost_cpu": 0,
+                    "cost_memory": 0,
+                    "endTime": 1445585908,
+                    "instances": [
+                      {
+                        "startTime": 1445585903,
+                        "output_records": 20,
+                        "id": "Odps/dtdream_hanwen_20151023073807936gj3xor06_LOT_0_0_0_job0/M1_U0#0_0",
+                        "status": "Terminated",
+                        "logId": "d01UQXVNVE0xTGpFek1TNDRMRTlrY0hNdlpIUmtjbVZoYlY5b1lXNTNaVzVmTWpBeE5URXdNak13TnpNNE1EYzVNelpuYWpONGIzSXdObDlNVDFSZk1GOHdYekJmYW05aU1DOU5NVjlWTUVCeU1UTmlNakV3TURndVpHY3VZV3hwZVhWdUxtTnZiU01hYmM=",
+                        "gblCounter": "{\"Counters\":\"{\\\"CountersValue\\\":[]}\",\"CustomInfo\":{\"StringMemoryPoolSize\":\"8392704\",\"UserCounters\":\"{}\"},\"InputCounters\":{\"input\":{\"bytes\":888,\"records\":4}},\"OutputCounters\":{\"R2_1\":{\"bytes\":239,\"dumps\":0,\"records\":20}},\"PanguReadBytes\":[0,909,0,0],\"PanguWriteBytes\":[0,0,0,0]}",
+                        "finishedPercentage": 100,
+                        "input_bytes": 0,
+                        "input_records": 0,
+                        "endTime": 1445585907,
+                        "output_bytes": 0
+                      }
+                    ],
+                    "startTime": 1445585899,
+                    "outputRecords": 20,
+                    "name": "M1_U0",
+                    "instanceCount": 1,
+                    "planned_memory": 0
+                  },
+                  {
+                    "progress": 100,
+                    "total_instance_run_time": 0,
+                    "inputRecords": 40,
+                    "status": "Terminated",
+                    "fatalInstances": [],
+                    "planned_cpu": 0,
+                    "cost_cpu": 0,
+                    "cost_memory": 0,
+                    "endTime": 1445585917,
+                    "instances": [
+                      {
+                        "startTime": 1445585912,
+                        "output_records": 0,
+                        "id": "Odps/dtdream_hanwen_20151023073807936gj3xor06_LOT_0_0_0_job0/R2_1#0_0",
+                        "status": "Terminated",
+                        "logId": "d01UQXVNVE0xTGpFeU9TNDNNeXhQWkhCekwyUjBaSEpsWVcxZmFHRnVkMlZ1WHpJd01UVXhNREl6TURjek9EQTNPVE0yWjJvemVHOXlNRFpmVEU5VVh6QmZNRjh3WDJwdllqQXZVakpmTVVCeU1UTmpNVEl3TnpNdVpHY3VZV3hwZVhWdUxtTnZiU01hYmM=",
+                        "gblCounter": "{\"Counters\":\"{\\\"CountersValue\\\":[]}\",\"CustomInfo\":{\"UserCounters\":\"{}\"},\"InputCounters\":{\"input\":{\"bytes\":239,\"merges\":0,\"records\":20},\"input#1\":{\"bytes\":239,\"merges\":0,\"records\":20}},\"OutputCounters\":{\"R2_1FS_DataSink_12\":{\"bytes\":552,\"records\":1},\"R2_1FS_DataSink_15\":{\"bytes\":576,\"records\":5},\"R2_1FS_DataSink_18\":{\"bytes\":624,\"records\":10}},\"PanguReadBytes\":[0,0,26,1936],\"PanguWriteBytes\":[1752,1752,0,0]}",
+                        "finishedPercentage": 100,
+                        "input_bytes": 0,
+                        "input_records": 40,
+                        "endTime": 1445585916,
+                        "output_bytes": 0
+                      }
+                    ],
+                    "startTime": 1445585899,
+                    "outputRecords": 16,
+                    "name": "R2_1",
+                    "instanceCount": 1,
+                    "planned_memory": 0
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "status": "TERMINATED",
+    "description": "[MRonSQL_144523723601604416757]",
+    "name": "[MRonSQL_144523723601604416757]",
+    "owner": "ALIYUN$xux@dtdream.com",
+    "tasksCmd": [
+      {
+        "MRonSQL_144523723601604416757": "ALTER TABLE dtdream_hanwen.aaaaa ADD PARTITION (phone='a',class='b');"
+      }
+    ],
+    "endTime": 1445237299000
+  },
+  "projectName":"dtdream_hanwen"
+}

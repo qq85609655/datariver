@@ -1,0 +1,78 @@
+<div id="category"></div>
+---+ Hive Atlas Bridge
+
+---++ Hive Model
+The default hive modelling is available in org.apache.atlas.hive.model.HiveDataModelGenerator. It defines the following types:
+<verbatim>
+hive_object_type(EnumType) - values [GLOBAL, DATABASE, TABLE, PARTITION, COLUMN]
+hive_resource_type(EnumType) - values [JAR, FILE, ARCHIVE]
+hive_principal_type(EnumType) - values [USER, ROLE, GROUP]
+hive_db(ClassType) - super types [Referenceable] - attributes [name, clusterName, description, locationUri, parameters, ownerName, ownerType]
+hive_order(StructType) - attributes [col, order]
+hive_resourceuri(StructType) - attributes [resourceType, uri]
+hive_serde(StructType) - attributes [name, serializationLib, parameters]
+hive_type(ClassType) - super types [] - attributes [name, type1, type2, fields]
+hive_storagedesc(ClassType) - super types [Referenceable] - attributes [cols, location, inputFormat, outputFormat, compressed, numBuckets, serdeInfo, bucketCols, sortCols, parameters, storedAsSubDirectories]
+hive_role(ClassType) - super types [] - attributes [roleName, createTime, ownerName]
+hive_column(ClassType) - super types [Referenceable] - attributes [name, type, comment]
+hive_table(ClassType) - super types [DataSet] - attributes [tableName, db, owner, createTime, lastAccessTime, comment, retention, sd, partitionKeys, columns, parameters, viewOriginalText, viewExpandedText, tableType, temporary]
+hive_partition(ClassType) - super types [Referenceable] - attributes [values, table, createTime, lastAccessTime, sd, columns, parameters]
+hive_process(ClassType) - super types [Process] - attributes [startTime, endTime, userName, operationType, queryText, queryPlan, queryId, queryGraph]
+</verbatim>
+
+The entities are created and de-duped using unique qualified name. They provide namespace and can be used for querying/lineage as well. Note that dbName and tableName should be in lower case. clusterName is explained below.
+   * hive_db - attribute qualifiedName - <dbName>@<clusterName>
+   * hive_table - attribute name - <dbName>.<tableName>@<clusterName>
+   * hive_column - attribute qualifiedName - <dbName>.<tableName>.<columnName>@<clusterName>
+   * hive_partition - attribute qualifiedName - <dbName>.<tableName>.<partitionValues('-' separated)>@<clusterName>
+   * hive_process - attribute name - <queryString> - trimmed query string in lower case
+
+
+---++ Importing Hive Metadata
+org.apache.atlas.hive.bridge.HiveMetaStoreBridge imports the hive metadata into Atlas using the model defined in org.apache.atlas.hive.model.HiveDataModelGenerator. import-hive.sh command can be used to facilitate this.
+Set the following configuration in <atlas-conf>/client.properties and set environment variable HIVE_CONFIG to the hive conf directory:
+  <verbatim>
+    <property>
+      <name>atlas.cluster.name</name>
+      <value>primary</value>
+    </property>
+  </verbatim>
+
+Usage: <atlas package>/bin/import-hive.sh. The logs are in <atlas package>/logs/import-hive.log
+
+
+---++ Hive Hook
+Hive supports listeners on hive command execution using hive hooks. This is used to add/update/remove entities in Atlas using the model defined in org.apache.atlas.hive.model.HiveDataModelGenerator.
+The hook submits the request to a thread pool executor to avoid blocking the command execution. The thread submits the entities as message to the notification server and atlas server reads these messages and registers the entities.
+Follow these instructions in your hive set-up to add hive hook for Atlas:
+   * Set-up atlas hook in hive-site.xml of your hive configuration:
+  <verbatim>
+    <property>
+      <name>hive.exec.post.hooks</name>
+      <value>org.apache.atlas.hive.hook.HiveHook</value>
+    </property>
+  </verbatim>
+   * Add 'export HIVE_AUX_JARS_PATH=<atlas package>/hook/hive' in hive-env.sh of your hive configuration
+   * Set the following configuration in <atlas-conf>/client.properties
+   <verbatim>
+     <property>
+       <name>atlas.cluster.name</name>
+       <value>primary</value>
+     </property>
+     </verbatim>
+   * Copy <atlas-conf>/client.properties and <atlas-conf>/application.properties to the hive conf directory.
+
+The following properties in <atlas-conf>/client.properties control the thread pool and notification details:
+   * atlas.hook.hive.synchronous - boolean, true to run the hook synchronously. default false
+   * atlas.hook.hive.numRetries - number of retries for notification failure. default 3
+   * atlas.hook.hive.minThreads - core number of threads. default 5
+   * atlas.hook.hive.maxThreads - maximum number of threads. default 5
+   * atlas.hook.hive.keepAliveTime - keep alive time in msecs. default 10
+   * atlas.hook.hive.queueSize - queue size for the threadpool. default 10000
+
+Refer [[Configuration][Configuration]] for notification related configurations
+
+
+---++ Limitations
+   * Since database name, table name and column names are case insensitive in hive, the corresponding names in entities are lowercase. So, any search APIs should use lowercase while querying on the entity names
+   * Only the following hive operations are captured by hive hook currently - create database, create table, create view, CTAS, load, import, export, query, alter table rename and alter view rename

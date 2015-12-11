@@ -1,0 +1,56 @@
+/**
+ * √Ë ˆ–≈œ¢
+ *
+ * @author XiangShaolong 0095
+ * @version 1.0.0
+ * @company DtDream
+ * @date 2015/11/13 16:15
+ */
+
+.mt5px { margin-top:5px; }
+.mt10px { margin-top:10px; }
+.mt15px { margin-top:15px; }
+.mt20px { margin-top:20px; }
+.mt25px { margin-top:25px; }
+.mt50px { margin-top:50px; }
+
+.ml3px { margin-left:3px; }
+.ml5px { margin-left:5px; }
+.ml10px { margin-left:10px; }
+.ml15px { margin-left:15px; }
+.ml20px { margin-left:20px; }
+.ml25px { margin-left:25px; }
+.ml35px { margin-left:35px; }
+.ml50px { margin-left:50px; }
+
+.mr5px { margin-right:5px; }
+.mr10px { margin-right:10px; }
+.mr15px { margin-right:15px; }
+.mr20px { margin-right:20px; }
+.mr25px { margin-right:25px; }
+
+.mb5px { margin-bottom:5px; }
+.mb10px { margin-bottom:10px; }
+.mb15px { margin-bottom:15px; }
+.mb20px { margin-bottom:20px; }
+.mb25px { margin-bottom:25px; }
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.roundCorner{
+    /*padding:10px; width:300px; height:50px;*/
+    border: 1px solid dimgray;
+    /*-moz-border-radius: 15px;*/
+    /*-webkit-border-radius: 15px;*/
+    border-radius:8px;
+}
+
+
+/*
+.navbar-myDefault {
+    background-color: limegreen;
+    border-color: yellowgreen;
+}*/

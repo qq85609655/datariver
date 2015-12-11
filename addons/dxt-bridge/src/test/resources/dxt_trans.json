@@ -1,0 +1,30 @@
+{
+  "transition": {
+    "id": "",
+    "name": "tran1",
+    "status": "READY",
+    "steps": {
+      "demoInputs": [
+        {
+          "column": "num, city, name, birthDate",
+          "dbID": "13548e24-5739-42b7-a227-e84d6ca1d96a",
+          "name": "step1",
+          "splitColumn": "num",
+          "splitRule": "mod",
+          "tableName": "for_test"
+        }
+      ],
+      "demoOutputs": [
+        {
+          "dbID": "13548e24-5739-42b7-a227-e84d6ca1d96b",
+          "destColumn": "num, city, name, birthDate",
+          "flushNumber": "1000",
+          "insertMode": 1,
+          "name": "step2",
+          "tableName": "for_test2"
+        }
+      ]
+    },
+    "workStream": "step1->step2"
+  }
+}

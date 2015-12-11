@@ -1,0 +1,80 @@
+@startuml
+package DxtDataTypes #Plum{
+
+    enum DR_PROJECT_ROLE_TYPE{
+        PROJECT_ADMIN
+        PROJECT_ROLE0
+        PROJECT_ROLE1
+        PROJECT_ROLE2
+        PROJECT_ROLE3
+        PROJECT_ROLE4
+        PROJECT_ROLE5
+        PROJECT_ROLE6
+        PROJECT_ROLE7
+        PROJECT_ROLE8
+    }
+
+    enum DR_PROJECT_TYPE{
+        DR_PROJECT_TYPE_DEVELOP
+        DR_PROJECT_TYPE_TEST
+        DR_PROJECT_TYPE_PRODUCE
+        DR_PROJECT_TYPE_PREPARE
+    }
+
+    enum DR_PROJECT_STATUS{
+        DR_PROJECT_STATUS_NORMAL
+        DR_PROJECT_STATUS_DELETED
+        DR_PROJECT_STATUS_INACTIVE
+        DR_PROJECT_STATUS_BOOTING
+    }
+
+    enum DR_ENGINE_TYPE{
+        DR_ENGINE_TYPE_ODPS
+        DR_ENGINE_TYPE_ADS
+    }
+
+    class DR_TENANT {
+        name : String
+        description : String
+        admins : array<DR_USER>
+        users : array<DR_USER>
+        projects : array<DR_PROJECT>
+    }
+    class DR_USER{
+            name : String
+            description : String
+            accId : String
+            accKey : String
+            projects : array<DR_PROJECT>
+        }
+
+    class DR_PROJECT_ROLE{
+            type : DR_PROJECT_ROLE_TYPE
+            users : array<DR_USER>
+            policy : String
+            proxyAccount : String
+    }
+    class DR_PROJECT{
+        name : String
+        description : String
+        engine : DR_ENGINE
+        roles : array<DR_PROJECT_ROLE>
+        autoSchedule : boolean
+        codeEnabled : boolean
+    }
+
+    class DR_ENGINE{
+        name : String
+        description : String
+        dataContainer : DATA_CONTAINER_SUPER_TYPE
+    }
+
+    DR_TENANT -> DR_USER
+    DR_TENANT -> DR_PROJECT : projects>
+    DR_PROJECT -> DR_ENGINE : engine>
+    DR_PROJECT -> DR_PROJECT_ROLE : roles>
+    DR_PROJECT_ROLE -> DR_USER : users>
+    DR_USER -> DR_PROJECT : projects >
+    DR_ENGINE -> DATA_CONTAINER_SUPER_TYPE :　dataContainer>
+}
+@enduml

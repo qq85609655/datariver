@@ -1,0 +1,12 @@
+{
+  "dbInfo": {
+    "dbName": "test",
+    "dbPassword": "Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c",
+    "dbUser": "root",
+    "host": "192.168.65.1",
+    "port": "3306"
+  },
+  "dbType": "MySQL",
+  "id": "13548e24-5739-42b7-a227-e84d6ca1d96a",
+  "name": "con99"
+}

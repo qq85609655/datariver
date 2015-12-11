@@ -1,0 +1,30 @@
+@startuml
+
+package DxtDataTypes #Plum {
+    class GeneralAccInfo {
+        host : String
+        port : Int
+        version : Float
+    }
+    class TransInstance {
+        lastExecuteTime : Long
+        runTimes : Int
+        successTimes : Int
+        failTimes : Int
+    }
+    class TransStep {
+        db : DataContainer
+    }
+
+    TransStep -> DataContainer : db >
+
+    DBAccess <|-- GeneralAccInfo
+    ETLInstance <|-- TransInstance
+    ETLStep <|-- TransStep
+}
+
+
+
+
+
+@enduml

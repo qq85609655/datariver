@@ -1,0 +1,27 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/12 20:24
+-->
+<div class="col-lg-12">
+    <table class="table table-bordered table-striped mt25px">
+        <thead>
+        <tr>
+            <th class="col-md-2" ng-repeat="statisticInfoHead in statisticResData.pepInfoStatisticInfo">{{statisticInfoHead.head}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="statisticInfoCol in statisticResData.pepInfoStatisticInfo">
+            <td>{{statisticInfoCol.col1}}</td>
+            <td>{{statisticInfoCol.col2}}</td>
+            <td>{{statisticInfoCol.col3}}</td>
+            <td>{{statisticInfoCol.col4}}</td>
+            <td>{{statisticInfoCol.col5}}</td>
+            <td>{{statisticInfoCol.col6}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

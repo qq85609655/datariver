@@ -1,0 +1,136 @@
+@startuml
+
+
+package HiveDataTypes #Plum {
+    enum hive_object_type {
+        GLOBAL
+        DATABASE
+        TABLE
+        PARTITION
+        COLUMN
+    }
+    enum hive_principal_type {
+        USER
+        ROLE
+        GROUP
+    }
+    enum hive_resource_type {
+        JAR
+        FILE
+        ARCHIVE
+    }
+
+    class hive_serde << (S,orchid) >> {
+        name : String
+        serializationLib : String
+        parameters : Map<String, String>
+    }
+    class hive_order << (S,orchid) >> {
+        col : String
+        order : Int
+    }
+    class hive_resourceuri << (S,orchid) >> {
+        resourceType : hive_resource_type
+        uri : Int
+    }
+
+    class hive_db {
+        name : String
+        clusterName : String
+        description : String
+        locationUri : String
+        parameters : Map<String, String>
+        ownerName : String
+        ownerType : hive_principal_type
+    }
+    class hive_storagedesc {
+        cols : array<hive_column>
+        location : String
+        inputFormat : String
+        outputFormat : String
+        compressed : Boolean
+        numBuckets : Int
+        serdeInfo : hive_serde
+        bucketCols : array<String>
+        sortCols : array<hive_order>
+        parameters : Map<String, String>
+        storedAsSubDirectories : Boolean
+    }
+    class hive_table {
+        tableName : String
+        db : hive_db
+        owner : String
+        createTime : Long
+        lastAccessTime : Long
+        comment : String
+        retention : Int
+        sd : hive_storagedesc
+        partitionKeys : array<hive_column>
+        columns : array<hive_column>
+        parameters : Map<String, String>
+        viewOriginalText : String
+        viewExpandedText : String
+        tableType : String
+        temporary : Boolean
+    }
+    class hive_column {
+        name : String
+        type : String
+        comment : String
+    }
+    class hive_partition {
+        values : array<String>
+        table : hive_table
+        createTime : Long
+        lastAccessTime : Long
+        sd : hive_storagedesc
+        columns : array<hive_column>
+        parameters : Map<String, String>
+    }
+    class hive_role {
+        roleName : String
+        createTime : Long
+        ownerName : String
+    }
+    class hive_type {
+        name : String
+        type1 : String
+        type2 : String
+        fields : array<hive_column>
+    }
+    class hive_process {
+        startTime : Long
+        endTime : Long
+        userName : String
+        operationType : String
+        queryText : String
+        queryPlan : String
+        queryId : String
+        queryGraph : String
+    }
+
+    hive_resourceuri --> hive_resource_type : resourceType >
+    hive_db --> hive_principal_type : ownerType >
+    hive_storagedesc --> hive_column : cols >
+    hive_storagedesc --> hive_serde : serdeInfo >
+    hive_storagedesc --> hive_order : sortCols >
+    hive_table --> hive_db : db >
+    hive_table --> hive_storagedesc : sd >
+    hive_table --> hive_column : partitionKeys >
+    hive_table --> hive_column : columns >
+    hive_partition --> hive_table : table >
+    hive_partition --> hive_storagedesc : sd >
+    hive_partition --> hive_column : columns >
+    hive_type --> hive_column : fields >
+
+    Referenceable <|-- hive_db
+    Referenceable <|-- hive_storagedesc
+    DataSet <|-- hive_table
+    Referenceable <|-- hive_column
+    Referenceable <|-- hive_partition
+    Process <|-- hive_process
+}
+
+
+
+@enduml

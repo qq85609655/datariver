@@ -1,0 +1,532 @@
+{
+  "resourceMeta": [
+    {
+      "lastModifiedTime": 1441070922000,
+      "createdTime": 1441070922000,
+      "name": "aopalliance-1.0.jar",
+      "owner": "ALIYUN$xux@dtdream.com",
+      "isTempResource": false,
+      "type": "jar",
+      "comment": ""
+    },
+    {
+      "lastModifiedTime": 1437961307000,
+      "createdTime": 1437961307000,
+      "name": "messi.txt",
+      "owner": "ALIYUN$xux@dtdream.com",
+      "isTempResource": false,
+      "type": "file",
+      "comment": ""
+    },
+    {
+      "lastModifiedTime": 1437016647000,
+      "createdTime": 1437016647000,
+      "name": "my_ossystem.py",
+      "owner": "ALIYUN$xux@dtdream.com",
+      "isTempResource": false,
+      "type": "py",
+      "comment": ""
+    },
+    {
+      "lastModifiedTime": 1437988391000,
+      "createdTime": 1437988391000,
+      "name": "z0247_mr_sort2_ret",
+      "owner": "ALIYUN$xux@dtdream.com",
+      "isTempResource": false,
+      "type": "table",
+      "comment": ""
+    }
+  ],
+  "packageMeta": {
+    "tables": {
+      "dtdream_hanwen.testpackagev": {
+        "partitionMeta": [],
+        "tableMeta": {
+          "lastModifiedTime": 1442219983000,
+          "isPartitioned": false,
+          "createTime": 1442219983000,
+          "description": "",
+          "name": "testpackagev",
+          "owner": "ALIYUN$xux@dtdream.com",
+          "columns": [
+            {
+              "name": "c1",
+              "comment": "",
+              "type": "STRING"
+            }
+          ],
+          "partitionColumns": [],
+          "lifeCycle": -1
+        }
+      },
+      "dtdream_hanwen.testp123": {
+        "partitionMeta": [],
+        "tableMeta": {
+          "lastModifiedTime": 1442219308000,
+          "isPartitioned": false,
+          "createTime": 1442219308000,
+          "description": "",
+          "name": "testp123",
+          "owner": "ALIYUN$xux@dtdream.com",
+          "columns": [
+            {
+              "name": "c123",
+              "comment": "",
+              "type": "STRING"
+            }
+          ],
+          "partitionColumns": [],
+          "lifeCycle": -1
+        }
+      },
+      "dtdream_hanwen.j0051_result2": {
+        "partitionMeta": [],
+        "tableMeta": {
+          "lastModifiedTime": 1442219308000,
+          "isPartitioned": false,
+          "createTime": 1442219308000,
+          "description": "rest2",
+          "name": "j0051_result2",
+          "owner": "ALIYUN$xux@dtdream.com",
+          "columns": [
+            {
+              "name": "c123",
+              "comment": "",
+              "type": "STRING"
+            }
+          ],
+          "partitionColumns": [],
+          "lifeCycle": -1
+        }
+      },
+      "dtdream_hanwen.j0051_countresult": {
+        "partitionMeta": [],
+        "tableMeta": {
+          "lastModifiedTime": 1442219308000,
+          "isPartitioned": false,
+          "createTime": 1442219308000,
+          "description": "countresult",
+          "name": "j0051_countresult",
+          "owner": "ALIYUN$xux@dtdream.com",
+          "columns": [
+            {
+              "name": "c123",
+              "comment": "",
+              "type": "STRING"
+            }
+          ],
+          "partitionColumns": [],
+          "lifeCycle": -1
+        }
+      },
+      "xuxiang_test.wc_out": {
+        "partitionMeta": [],
+        "tableMeta": {
+          "lastModifiedTime": 1435823211000,
+          "isPartitioned": false,
+          "createTime": 1435823211000,
+          "description": "",
+          "name": "wc_out",
+          "owner": "ALIYUN$418720028@qq.com",
+          "columns": [
+            {
+              "name": "key",
+              "comment": "",
+              "type": "STRING"
+            },
+            {
+              "name": "cnt",
+              "comment": "",
+              "type": "BIGINT"
+            }
+          ],
+          "partitionColumns": [],
+          "lifeCycle": -1
+        }
+      },
+      "dtdream_hanwen.p123xv": {
+        "partitionMeta": [],
+        "tableMeta": {
+          "lastModifiedTime": 1442219481000,
+          "isPartitioned": false,
+          "createTime": 1442219481000,
+          "description": "",
+          "name": "p123xv",
+          "owner": "ALIYUN$xux@dtdream.com",
+          "columns": [
+            {
+              "name": "c123",
+              "comment": "",
+              "type": "STRING"
+            }
+          ],
+          "partitionColumns": [
+            {
+              "name": "a",
+              "comment": "a",
+              "type": "STRING"
+            },
+            {
+              "name": "b",
+              "comment": "b",
+              "type": "STRING"
+            }
+          ],
+          "lifeCycle": -1
+        }
+      },
+      "dtdream_hanwen.j0051_table1": {
+        "partitionMeta": [
+          {
+            "lastModifiedTime": 1437553729000,
+            "createTime": 1437553729000,
+            "name": "dt='20140301'",
+            "numStorage": 14264,
+            "table": "j0051_table1"
+          }
+        ],
+        "tableMeta": {
+          "lastModifiedTime": 1445226117000,
+          "isPartitioned": false,
+          "createTime": 1445226117000,
+          "description": "张三丰",
+          "name": "j0051_table1",
+          "owner": "ALIYUN$xux@dtdream.com",
+          "columns": [
+            {
+              "name": "id",
+              "comment": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "comment": "姓名",
+              "type": "STRING"
+            },
+            {
+              "name": "age",
+              "comment": "啊",
+              "type": "DOUBLE"
+            },
+            {
+              "name": "sex",
+              "comment": "性别",
+              "type": "BOOLEAN"
+            },
+            {
+              "name": "birth",
+              "comment": "生日",
+              "type": "DATETIME"
+            }
+          ],
+          "partitionColumns": [],
+          "lifeCycle": -1
+        }
+      },
+      "dtdream_hanwen.j0051_table2": {
+        "partitionMeta": [
+        ],
+        "tableMeta": {
+          "lastModifiedTime": 1445226117000,
+          "isPartitioned": false,
+          "createTime": 1445226117000,
+          "description": "张三丰11",
+          "name": "j0051_table2",
+          "owner": "ALIYUN$xux@dtdream.com",
+          "columns": [
+            {
+              "name": "id",
+              "comment": "id",
+              "type": "BIGINT"
+            },
+            {
+              "name": "name",
+              "comment": "姓名",
+              "type": "STRING"
+            },
+            {
+              "name": "age",
+              "comment": "啊",
+              "type": "DOUBLE"
+            },
+            {
+              "name": "sex",
+              "comment": "性别",
+              "type": "BOOLEAN"
+            },
+            {
+              "name": "birth",
+              "comment": "生日",
+              "type": "DATETIME"
+            }
+          ],
+          "partitionColumns": [],
+          "lifeCycle": -1
+        }
+      }
+    },
+    "projects": {
+      "metatest111": {
+        "lastModifiedTime": 1444721584000,
+        "projectGroupname": "aliyun_group",
+        "createTime": 1444721584000,
+        "status": "AVAILABLE",
+        "description": "",
+        "name": "metatest111",
+        "owner": "ALIYUN$jiasanshou@aliyun.com",
+        "dbType": "ODPS",
+        "accessInfo": {
+          "name": "ALIYUN$jiasanshou@aliyun.com@@metatest111"
+        }
+      },
+      "drowzju_prj1": {
+        "lastModifiedTime": 1432535036000,
+        "projectGroupname": "aliyun_group",
+        "createTime": 1432535036000,
+        "status": "AVAILABLE",
+        "description": "try",
+        "name": "drowzju_prj1",
+        "owner": "ALIYUN$drowzju@gmail.com",
+        "dbType": "ODPS",
+        "accessInfo": {
+          "name": "ALIYUN$drowzju@gmail.com@@drowzju_prj1"
+        }
+      },
+      "dtdream_hanwen": {
+        "lastModifiedTime": 1445238015000,
+        "projectGroupname": "aliyun_vip_group",
+        "createTime": 1435736441000,
+        "status": "AVAILABLE",
+        "description": "此项目空间具有MR以及UDF等权限",
+        "name": "dtdream_hanwen",
+        "owner": "ALIYUN$xux@dtdream.com",
+        "dbType": "ODPS",
+        "accessInfo": {
+          "name": "ALIYUN$xux@dtdream.com@@dtdream_hanwen"
+        }
+      },
+      "xuxiang_test":{
+        "lastModifiedTime": 1428049617000,
+        "projectGroupname": "aliyun_group",
+        "createTime": 1428049617000,
+        "status": "AVAILABLE",
+        "description": "",
+        "name": "xuxiang_test",
+        "owner": "ALIYUN$418720028@qq.com",
+        "dbType": "ODPS",
+        "accessInfo": {
+          "name": "ALIYUN$418720028@qq.com@@xuxiang_test"
+        }
+      }
+    },
+    "CreatedPackages": [
+      {
+        "SourceProject": "dtdream_hanwen",
+        "PackageName": "p123",
+        "ResourceList": [
+          {
+            "name": "testp123",
+            "privileges": [
+              "Describe",
+              "Select"
+            ],
+            "type": "table",
+            "meta": "dtdream_hanwen.testp123"
+          },
+          {
+            "name": "p123xv",
+            "privileges": [
+              "Describe",
+              "Select"
+            ],
+            "type": "table",
+            "meta": "dtdream_hanwen.p123xv"
+          }
+        ],
+        "CreateTime": "2015-09-14T16:28:04+0800",
+        "AllowedProjectList": []
+      },
+      {
+        "SourceProject": "dtdream_hanwen",
+        "PackageName": "testp",
+        "ResourceList": [
+          {
+            "name": "testpackagev",
+            "privileges": [
+              "Describe",
+              "Select"
+            ],
+            "type": "table",
+            "meta": "dtdream_hanwen.testpackagev"
+          }
+        ],
+        "CreateTime": "2015-09-14T16:40:21+0800",
+        "AllowedProjectList": [
+          "drowzju_prj1"
+        ]
+      },
+      {
+        "SourceProject": "dtdream_hanwen",
+        "PackageName": "zsf001",
+        "ResourceList": [
+          {
+            "name": "j0051_table1",
+            "privileges": [
+              "Describe",
+              "Select"
+            ],
+            "type": "table",
+            "meta": "dtdream_hanwen.j0051_table1"
+          }
+        ],
+        "CreateTime": "2015-10-30T14:16:39+0800",
+        "AllowedProjectList": [
+          "metatest111"
+        ]
+      }
+    ],
+    "InstalledPackages": [
+      {
+        "Status": "OK",
+        "SourceProject": "xuxiang_test",
+        "PackageName": "wc_out",
+        "ResourceList": [
+          {
+            "name": "wc_out",
+            "privileges": [
+              "Describe",
+              "Select"
+            ],
+            "type": "table",
+            "meta": "xuxiang_test.wc_out"
+          }
+        ],
+        "CreateTime": "2015-07-22T19:40:44+0800",
+        "InstallTime": "2015-07-22T19:43:18+0800"
+      }
+    ]
+  },
+  "tableMeta": {
+    "lastModifiedTime": 1445226117000,
+    "isPartitioned": false,
+    "createTime": 1445226117000,
+    "description": "张三丰",
+    "name": "j0051_table1",
+    "owner": "ALIYUN$xux@dtdream.com",
+    "columns": [
+      {
+        "name": "id",
+        "comment": "id",
+        "type": "BIGINT"
+      },
+      {
+        "name": "name",
+        "comment": "姓名",
+        "type": "STRING"
+      },
+      {
+        "name": "age",
+        "comment": "啊",
+        "type": "DOUBLE"
+      },
+      {
+        "name": "sex",
+        "comment": "性别",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "birth",
+        "comment": "生日",
+        "type": "DATETIME"
+      }
+    ],
+    "partitionColumns": [],
+    "lifeCycle": -1
+  },
+  "projectMeta": {
+    "lastModifiedTime": 1445238015000,
+    "projectGroupname": "aliyun_vip_group",
+    "createTime": 1435736441000,
+    "status": "AVAILABLE",
+    "description": "此项目空间具有MR以及UDF等权限",
+    "name": "dtdream_hanwen",
+    "owner": "ALIYUN$xux@dtdream.com",
+    "dbType": "ODPS",
+    "accessInfo": {
+      "name": "ALIYUN$xux@dtdream.com@@dtdream_hanwen"
+    }
+  },
+  "partitionMeta": [
+    {
+      "lastModifiedTime": 1437553729000,
+      "createTime": 1437553729000,
+      "name": "dt='20140301'",
+      "numStorage": 14264,
+      "table": "p123xv"
+    }
+  ],
+  "tablesMeta": [
+    {
+      "tableMeta": {
+        "lastModifiedTime": 1435835914000,
+        "createTime": 1435835914000,
+        "description": "",
+        "name": "0141_2cpx_in",
+        "columns": [
+          {
+            "name": "word",
+            "type": "BIGINT",
+            "comment": ""
+          },
+          {
+            "name": "subword",
+            "type": "BIGINT",
+            "comment": ""
+          }
+        ],
+        "owner": "ALIYUN$xux@dtdream.com",
+        "partitionColumns": [],
+        "lifeCycle": -1
+      },
+      "partitionMeta": []
+    },
+    {
+      "tableMeta": {
+        "lastModifiedTime": 1437792531000,
+        "createTime": 1437792531000,
+        "description": "分区输出表",
+        "name": "wc_out3_gao",
+        "columns": [
+          {
+            "name": "number",
+            "type": "STRING",
+            "comment": ""
+          }
+        ],
+        "owner": "ALIYUN$xux@dtdream.com",
+        "partitionColumns": [
+          {
+            "name": "value",
+            "type": "STRING",
+            "comment": ""
+          },
+          {
+            "name": "value2",
+            "type": "STRING",
+            "comment": ""
+          }
+        ],
+        "lifeCycle": -1
+      },
+      "partitionMeta": [
+        {
+          "lastModifiedTime": 1437792560000,
+          "createTime": 1437792560000,
+          "name": "value='2',value2='3'",
+          "numStorage": 0,
+          "table": "wc_out3_gao"
+        }
+      ]
+    }
+  ]
+}

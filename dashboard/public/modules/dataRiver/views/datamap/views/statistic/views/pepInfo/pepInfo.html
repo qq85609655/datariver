@@ -1,0 +1,38 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/12 20:24
+-->
+<div class="row col-lg-12">
+    <table class="table table-bordered table-striped">
+        <tr ng-repeat="pepInfo in statisticResData.pepInfoTable1">
+            <th>{{pepInfo.head1}}</th>
+            <td>{{pepInfo.col1}}</td>
+            <th>{{pepInfo.head2}}</th>
+            <td>{{pepInfo.col2}}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="row col-lg-12">
+
+    <div class="col-lg-9" style="border: 2px solid orange; height: 380px;" ui-view>
+        <div class="col-lg-9">
+            <table class="table table-bordered table-striped mt25px">
+                <tr ng-repeat="linkInfo in statisticResData.pepInfoLinkInfo">
+                    <th class="col-md-6">{{linkInfo.head}}</th>
+                    <td>{{linkInfo.row}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div ng-repeat="butt in statisticResData.pepInfoButton">
+            <button class="{{butt.clazz}} mt10px" ui-sref="{{butt.link}}">{{butt.name}}</button>
+        </div>
+    </div>
+</div>

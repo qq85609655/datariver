@@ -1,0 +1,145 @@
+@startuml
+
+
+package OdpsDataTypes #Plum {
+    enum OdpsObjectType {
+        GLOBAL
+        PROJECT
+        TABLE
+        PARTITION
+        COLUMN
+    }
+    enum OdpsResourceType {
+        FILE
+        JAR
+        PY
+        ARCHIVE
+        TABLE
+        VOLUMEFILE
+        UNKNOWN
+    }
+    enum OdpsObjectPrivilege {
+        READ
+        WRITE
+        LIST
+        CREATETABLE
+        CREATEFUNCTION
+        CREATERESOURCE
+        CREATEJOB
+        DESCRIBE
+        SELECT
+        ALTER
+        UPDATE
+        DROP
+        DELETE
+        EXECUTE
+        ALL
+    }
+    enum OdpsPackageResourceType {
+        FUNC
+        TABLE
+        RESOURCE
+        INSTANCE
+    }
+
+    class OdpsAccInfo {
+        tunnelURL : String
+        endpointURL : String
+    }
+    class OdpsProject {
+        owner : String
+        createTime : Long
+        lastModifiedTime : Long
+        projectGroupname : Long
+        clusterQuota : String
+        clusterName : String
+    }
+    class OdpsColumn {
+        isPartitionKey : Boolean
+        label : String
+    }
+    class OdpsPartition {
+        name : String
+        table : OdpsTable
+        createTime : Long
+        lastModifiedTime : Long
+        columns : array<OdpsColumn>
+        numRecord : Long
+        numStorage : Long
+    }
+    class OdpsTable {
+        owner : String
+        lifeCycle : Int
+        origination : String
+        tableType : String
+        isPartitioned : Boolean
+        storageVolume : Long
+        incementVolume : Long
+        netIncrementVolume : Long
+        createTime : Long
+        lastModifiedTime : Long
+        partitionKeys : array<OdpsColumn>
+    }
+    class OdpsResource {
+        name : String
+        project : OdpsProject
+        owner : String
+        createTime : Long
+        lastModifiedTime : Long
+        resourceType : OdpsResourceType
+        description : String
+    }
+    class OdpsPackageResourceItem {
+        type : OdpsPackageResourceType
+        name : String
+        privileges : array<OdpsObjectPrivilege>
+        resource : DataElement
+    }
+    class OdpsPackage {
+        ownerProject : OdpsProject
+        name : String
+        createTime : Long
+        installTime : Long
+        assignedProjects : array<OdpsProject>
+        resources : array<OdpsPackageResourceItem>
+    }
+    class OdpsTask {
+        queryPlan : String
+    }
+    class OdpsInstance {
+        owner : String
+        createTime : Long
+        startTime : Long
+        endTime : Long
+        project : OdpsProject
+    }
+
+
+    OdpsPackageResourceItem --> OdpsPackageResourceType : type >
+    OdpsPackageResourceItem --> OdpsObjectPrivilege : privileges >
+    OdpsPackageResourceItem --> DataElement : resource >
+    OdpsPartition --> OdpsTable : table >
+    OdpsPartition --> OdpsColumn : columns >
+    OdpsInstance --> OdpsProject : project >
+    OdpsTable --> OdpsColumn : partitionKeys >
+    OdpsResource --> OdpsProject : project >
+    OdpsResource --> OdpsResourceType : resourceType >
+    OdpsPackage --> OdpsProject : ownerProject >
+    OdpsPackage --> OdpsProject : assignedProjects >
+    OdpsPackage --> OdpsPackageResourceItem : resources >
+
+    DataElement <|- OdpsPackage
+    DataContainer <|-- OdpsProject
+    DataField <|-- OdpsColumn
+    DBAccess <|-- OdpsAccInfo
+    DataTable <|-- OdpsTable
+    Referenceable <|-- OdpsPartition
+    Referenceable <|-- OdpsResource
+    Referenceable <|-- OdpsPackageResourceItem
+    ETLTask <|-- OdpsTask
+    ETLInstance <|-- OdpsInstance
+}
+
+
+
+@enduml

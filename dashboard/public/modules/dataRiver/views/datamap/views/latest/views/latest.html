@@ -1,0 +1,64 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/12 20:23
+-->
+
+<div class="col-lg-12">
+    <form>
+        <span>名称：</span>
+        <input class="ml25px" type="text" placeholder="名称">
+        <span class="ml25px">创建人：</span>
+        <input class="ml25px" type="text" placeholder="创建人">
+
+    </form>
+</div>
+<div class="col-lg-12 mt25px">
+    <form>
+        <span>创建时间：从</span>
+        <input type="date" placeholder="起始时间" style="height: 26px;">
+        <span>到</span>
+        <input type="date" placeholder="结束时间" style="height: 26px;">
+        <button class="btn btn-default ml25px" type="submit">清空搜索条件</button>
+        <button class="btn btn-success ml25px" type="submit">搜索</button>
+    </form>
+</div>
+
+<div class="col-lg-12 well-lg">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th ng-repeat="latestRepHeader in dataMapData.latestHeader" ng-bind="latestRepHeader.header"></th>
+        </tr>
+        <tr ng-repeat="latestRepRow in dataMapData.latestRow">
+            <td><a ui-sref="dataRiver.dataMap.statistic.database.pepInfo">{{latestRepRow.col1}}</a></td>
+            <td ng-bind="latestRepRow.col2"></td>
+            <td ng-bind="latestRepRow.col3"></td>
+            <td ng-bind="latestRepRow.col4"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="row col-lg-12">
+    <nav>
+        <ul class="pagination pull-right">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

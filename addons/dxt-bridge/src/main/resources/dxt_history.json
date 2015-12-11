@@ -1,0 +1,44 @@
+{
+  "statistics": {
+    "failed": 0,
+    "history": [
+      {
+        "result": "Success",
+        "startTime": "2015-10-28 08:28:39",
+        "steps": [
+          {
+            "errors": 0,
+            "inputLines": 450000,
+            "outputLines": 0,
+            "readLines": 0,
+            "runTime": 62000,
+            "startTime": "2015-10-28 08:28:39",
+            "stepName": "step1",
+            "stopTime": "2015-10-28 08:29:41",
+            "type": "TableInput",
+            "writeLines": 450000
+          },
+          {
+            "errors": 0,
+            "inputLines": 0,
+            "outputLines": 450000,
+            "readLines": 450000,
+            "runTime": 69000,
+            "startTime": "2015-10-28 08:28:39",
+            "stepName": "step2",
+            "stopTime": "2015-10-28 08:29:48",
+            "type": "TableOutput",
+            "writeLines": 450000
+          }
+        ],
+        "stopTime": "2015-10-28 08:29:48"
+      }
+    ],
+    "id": "e68192e8-39c3-4f65-b0da-15c833259326",
+    "latestTime": "2015-10-28 08:28:39",
+    "manualStop": 0,
+    "name": "tran1",
+    "success": 1,
+    "totalCount": 1
+  }
+}

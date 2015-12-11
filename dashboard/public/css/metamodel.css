@@ -1,0 +1,49 @@
+
+svg{
+    /*border: 2px steelblue solid;*/
+}
+
+/* 箭头的填充颜色*/
+#suit {
+    stroke-dasharray: 0,2 1;
+}
+    /* 目前使用了下面这个*/
+#licensing {
+    fill: RoyalBlue;
+    /*fill-opacity: 0.5;*/
+}
+
+#resolved {
+    stroke-dasharray: 0,2 1;
+}
+
+/* 路径样式*/
+.edgePath {
+    fill: none;
+    stroke: DarkKhaki;
+    stroke-width: 1px;
+}
+
+/* 路径上文字*/
+.lineTextClass {
+    font: 14px sans-serif;
+    fill: red ;
+    fill-opacity: 0.0;
+}
+
+/* 节点*/
+circle {
+    cursor: move;
+    fill: Turquoise ;
+    stroke: MediumOrchid  ;
+    stroke-width: 2px;
+    stroke-opacity: 0.5;
+    /*stroke-dasharray: 0,2 1;*/
+}
+
+/* 节点文字*/
+text {
+    font: 16px sans-serif;
+    fill: CornflowerBlue;
+    pointer-events: none;
+}

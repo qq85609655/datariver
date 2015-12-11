@@ -1,0 +1,268 @@
+@startuml
+
+
+package InnerSuperTypes #LightGreen {
+    class Infrastructure {
+        name : String
+        description : String
+    }
+
+    class DataSet {
+        name : String
+        description : String
+    }
+
+    class Process {
+        name : String
+        description : String
+        inputs : array<DataSet>
+        outputs : array<DataSet>
+    }
+
+    class Referenceable {
+        qualifiedName : String
+    }
+
+    Process --> DataSet : inputs >
+    Process --> DataSet : outputs >
+}
+
+package CoreDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum AtlasMetaSourceType {
+        DXT
+        WORKFLOW
+        ODPS
+    }
+
+    class DataElement {
+        qualifiedName : String
+        metaSource : AtlasMetaSourceType
+    }
+
+    DataElement -> AtlasMetaSourceType : metaSource >
+}
+
+package LineageDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum LineageDependType {
+        SIMPLE
+        EXPRESSION
+        SCRIPT
+    }
+
+    class LineageDependency << (S,orchid) >> {
+        function : String
+        dependencyType : LineageDependType
+    }
+    class LineageProcessInfo {
+        name : String
+    }
+    class LineageTaskProcessInfo {
+        inputs : array<DataTable>
+        outputs : array<DataTable>
+        inputDbs : array<DataContainer>
+        outputDbs : array<DataContainer>
+        fieldMaps : array<LineageTaskFieldMap>
+    }
+    class LineageStepProcessInfo {
+        inputs : array<DataTable>
+        outputs : array<DataTable>
+        inputDbs : array<DataContainer>
+        outputDbs : array<DataContainer>
+        fieldMaps : array<LineageStepFieldMap>
+    }
+    class LineageWorkflowProcessInfo {
+        inputs : array<DataTable>
+        outputs : array<DataTable>
+        inputDbs : array<DataContainer>
+        outputDbs : array<DataContainer>
+    }
+    class LineageFieldMap {
+        dependencyInfo : LineageDependency
+    }
+    class LineageTaskFieldMap {
+        sourceFields : array<DataField>
+        targetField : DataField
+    }
+    class LineageStepFieldMap {
+        sourceFields : array<DataField>
+        targetField : DataField
+    }
+
+    LineageDependency --> LineageDependType : dependencyType >
+    LineageFieldMap --> LineageDependency : dependencyInfo >
+
+    LineageTaskProcessInfo -> LineageTaskFieldMap : fieldMaps >
+    LineageTaskProcessInfo ---> DataTable : inputs >
+    LineageTaskProcessInfo ---> DataTable : inputs >
+    LineageTaskProcessInfo --> DataContainer : inputDbs >
+    LineageTaskProcessInfo --> DataContainer : outputDbs >
+    LineageStepProcessInfo -> LineageStepFieldMap : fieldMaps >
+    LineageStepProcessInfo ---> DataTable : inputs >
+    LineageStepProcessInfo ---> DataTable : inputs >
+    LineageStepProcessInfo --> DataContainer : inputDbs >
+    LineageStepProcessInfo --> DataContainer : outputDbs >
+    LineageWorkflowProcessInfo ---> DataTable : inputs >
+    LineageWorkflowProcessInfo ---> DataTable : inputs >
+    LineageWorkflowProcessInfo --> DataContainer : inputDbs >
+    LineageWorkflowProcessInfo --> DataContainer : outputDbs >
+
+    LineageProcessInfo <|-- LineageTaskProcessInfo
+    LineageProcessInfo <|-- LineageStepProcessInfo
+    LineageProcessInfo <|-- LineageWorkflowProcessInfo
+
+    LineageFieldMap <|-- LineageTaskFieldMap
+    LineageFieldMap <|-- LineageStepFieldMap
+
+}
+
+package RelationalDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum DataContainerType {
+        ODPS
+        RDS
+        HDFS
+        HIVE
+        ORACLE
+        SQLSERVER
+        MYSQL
+        DB2
+        ADS
+        SYBASE
+        TERADATA
+        POSTGRESQL
+    }
+
+    enum DataContainerStatus {
+        AVAILABLE
+        READONLY
+        DELETING
+        FROZEN
+        UNKNOWN
+    }
+
+    class DBAccess {
+        name : String
+        description : String
+    }
+    class DataField {
+        name : String
+        description : String
+        dataType : String
+    }
+    class DataTable {
+        name : String
+        description : String
+        database : DataContainer
+        fields : array<DataField>
+    }
+    class DataContainer {
+        name : String
+        description : String
+        dbType : DataContainerType
+        id : String
+        tag : String
+        status : DataContainerStatus
+        accessInfo : DBAccess
+    }
+
+    DataContainer --> DataContainerType : dbType >
+    DataContainer --> DataContainerStatus : status >
+    DataContainer --> DBAccess : accessInfo >
+    DataTable -> DataContainer : database >
+    DataTable --> DataField : fields >
+
+    DataElement <|- DBAccess
+    DataElement <|-- DataField
+    DataElement <|- DataContainer
+    DataElement <|-- DataTable
+}
+
+package TransformDataTypes #GreenYellow/LightGoldenRodYellow {
+    enum ETLTaskType {
+        GRAPH
+        LOT
+        SQLPLAN
+        SQL
+        XLIB
+        SQLCOST
+        STREAM
+        MOYE
+        GALAXY
+    }
+    enum ETLTaskStatus {
+        WAITING
+        RUNNING
+        SUCCESS
+        FAILED
+        SUSPENDED
+        CANCELLED
+        SCHEDULE
+        TERMINATED
+    }
+    enum ETLStepType {
+        TABLE_INPUT
+        TABLE_OUTPUT
+        ODPS_INPUT
+        ODPS_OUTPUT
+        HDFS_INPUT
+        HDFS_OUTPUT
+    }
+    enum ETLInstanceStatus {
+        RUNNING
+        SUSPENDED
+        TERMINATED
+    }
+
+    class AbstractProcess {
+        name : String
+        description : String
+    }
+    class ETLInstance {
+        name : String
+        description : String
+        id : String
+        tasks : array<ETLTask>
+        tasksDAG : array<ETLStepSequence>
+        status : ETLInstanceStatus
+    }
+    class ETLTask {
+        status : ETLTaskStatus
+        lineage : LineageTaskProcessInfo
+        steps : array<ETLStep>
+        stepsDAG : array<ETLStepSequence>
+        id : String
+        type : ETLTaskType
+        queryText : String
+    }
+    class ETLStepSequence {
+        preceding : AbstractProcess
+        succeeding : AbstractProcess
+        kind : String
+    }
+    class ETLStep {
+        lineage : LineageStepProcessInfo
+        type : ETLStepType
+        queryText : String
+    }
+
+    ETLStep --> LineageStepProcessInfo : lineage >
+    ETLStep --> ETLStepType : type >
+    ETLStepSequence --> AbstractProcess : preceding >
+    ETLStepSequence --> AbstractProcess : succeeding >
+    ETLTask -> ETLTaskStatus : status >
+    ETLTask --> LineageTaskProcessInfo : lineage >
+    ETLTask --> ETLStep : steps >
+    ETLTask --> ETLStepSequence : stepsDAG >
+    ETLTask --> ETLTaskType : type >
+    ETLInstance --> ETLTask : tasks >
+    ETLInstance --> ETLStepSequence : tasksDAG >
+    ETLInstance -> ETLInstanceStatus : status >
+
+    DataElement <|- AbstractProcess
+    DataElement <|- ETLInstance
+    AbstractProcess <|--- ETLStep
+    AbstractProcess <|- ETLTask
+}
+
+
+
+@enduml

@@ -1,0 +1,110 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/12 18:46
+-->
+<div ng-controller="datamapController">
+    <div class="col-lg-2 row">
+        <div ng-include="'modules/dataRiver/views/datamap/views/navigation/views/navigation.html'"></div>
+    </div>
+
+    <div class="col-lg-10" ui-view>
+        <div class="mt5px">
+            <div class="col-lg-11 roundCorner" style="height: 500px">
+                <div class="col-lg-3">
+                    <!-- 财政厅-->
+                    <div class="mt25px roundCorner" style="height: 140px;">
+                        <button ui-sref=".finance" class="btn btn-info ">会计处</button><span class="panel-heading">25</span>
+                        <div ng-hide="checkboxModel.upOrDown == '上卷'">
+                            <button ui-sref=".finance" class="btn btn-default col-lg-offset-5 mt10px">人力系统</button>
+                            <button ui-sref=".finance" class="btn btn-default col-lg-offset-5 mt5px">财务系统</button>
+                        </div>
+                    </div>
+                    <!-- 公安厅-->
+                    <div class="mt50px roundCorner" style="height: 140px;">
+                        <button class="btn btn-success ">社会保障处</button><span class="panel-heading">30</span>
+                        <div ng-hide="checkboxModel.upOrDown == '上卷'">
+                            <button class="btn btn-default col-lg-offset-4 mt10px">法人系统库</button>
+                            <button class="btn btn-default col-lg-offset-4 mt5px">纳税系统库</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt15px roundCorner" style="height: 450px;">
+                    <!-- 数据仓库（ODPS）以及3个Project按钮-->
+                    <div class="row">
+                        <button class="btn btn-danger ">数据仓库</button>
+                        <div style="height: 50px;"></div>
+<!--
+                        <div ng-hide="checkboxModel.upOrDown == '上卷'" style="height: 100px;">
+                            <div class="col-lg-4">
+                                <button class="btn btn-success  mt15px">Project-1</button>
+                            </div>
+                            <div class="col-lg-4">
+                                <button class="btn btn-primary  mt15px">Project-2</button>
+                            </div>
+                            <div class="col-lg-4">
+                                <button class="btn btn-warning  mt15px">Project-3</button>
+                            </div>
+                        </div>
+-->
+                    </div>
+                    <!-- ODPS 显示框-->
+                    <div class="row ml5px roundCorner" style="width: 360px; height: 200px;">
+                        <div class="row col-lg-12">
+                            <button class="btn btn-info ">ODPS</button>
+                        </div>
+                        <div ng-hide="checkboxModel.upOrDown == '上卷'">
+                            <div class="col-lg-6">
+                                <button class="btn btn-primary btn mt15px pull-right">Project-4</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button class="btn btn-warning btn mt15px">Project-5</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- RDS ADS显示框-->
+                    <div class="row col-lg-12 mt25px">
+                        <div class="ml5px mt15px col-lg-6 roundCorner" style="width: 160px; height: 100px;">
+                            <button class="btn btn-primary">RDS</button><span class="panel-heading">10</span>
+                        </div>
+                        <div class="row mt15px col-lg-6 pull-right roundCorner" style="width: 160px; height: 100px;">
+                            <button class="btn btn-success">ADS</button><span class="panel-heading">10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <!-- 交通局-->
+                    <div class="mt25px roundCorner" style="height: 140px;">
+                        <button class="btn btn-danger  ">农业处</button><span class="panel-heading">600</span>
+                        <div ng-hide="checkboxModel.upOrDown == '上卷'">
+                            <button class="btn btn-default col-lg-offset-4 mt10px">车辆系统</button>
+                            <button class="btn btn-default col-lg-offset-4 mt5px">驾驶员系统</button>
+                        </div>
+                    </div>
+                    <!-- 人事局-->
+                    <div class="mt50px roundCorner" style="height: 140px;">
+                        <button class="btn btn-danger ">综合处</button><span class="panel-heading">600</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-lg-1 pull-right">
+                <form>
+                    <div class="row mt25px">
+                        <input type="checkbox" ng-model="checkboxModel.upOrDown" ng-true-value="下钻" ng-false-value="上卷"><span>{{checkboxModel.upOrDown}}</span>
+                    </div>
+                    <div class="row mt5px">
+                        <input type="checkbox" ng-model="checkboxModel.value2"><span>数据流动</span>
+                    </div>
+                </form>
+                <div class="row mt10px">
+                    <button class="btn btn-default btn-block">刷新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

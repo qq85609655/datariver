@@ -1,0 +1,24 @@
+{
+  "modelChildTable1": [
+    {"header": "名称", "row": "转换包"},
+    {"header": "类数目", "row": "10"},
+    {"header": "描述", "row": "描述仓库数据库"}
+  ],
+  "modelChildTable2Header": [
+    {"header": "类名称"},
+    {"header": "类别"},
+    {"header": "描述"},
+    {"header": "父类"},
+    {"header": "是否抽象"},
+    {"header": "创建时间"},
+    {"header": "修改时间"},
+    {"header": "UUID"},
+    {"header": "修改版本号"}
+  ],
+  "modelChildTable2Row": [
+    {"col1": "ODPS_TABLE", "col2": "class", "col3": "ODPS表", "col4": "DataTable", "col5": "否", "col6": "", "col7": "", "col8": "", "col9": ""},
+    {"col1": "ODPS_PROJECT", "col2": "class", "col3": "ODPS数据库", "col4": "DataContainer", "col5": "否", "col6": "", "col7": "", "col8": "", "col9": ""},
+    {"col1": "DataContainerType", "col2": "enum", "col3": "数据库状态", "col4": "DataElement", "col5": "否", "col6": "", "col7": "", "col8": "", "col9": ""},
+    {"col1": "", "col2": "", "col3": "", "col4": "", "col5": "", "col6": "", "col7": "", "col8": "", "col9": ""}
+  ]
+}

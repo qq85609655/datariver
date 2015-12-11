@@ -1,0 +1,28 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/12 20:24
+-->
+<div class="col-lg-12">
+    <table class="table table-bordered table-striped mt25px">
+        <thead>
+        <tr>
+            <th ng-repeat="resourceCollectHead in statisticResData.pepInfoResourceCollect">{{resourceCollectHead.head}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="resourceCollectCol in statisticResData.pepInfoResourceCollect">
+            <td>{{resourceCollectCol.col1}}</td>
+            <td>{{resourceCollectCol.col2}}</td>
+            <td>{{resourceCollectCol.col3}}</td>
+            <td>{{resourceCollectCol.col4}}</td>
+            <td>{{resourceCollectCol.col5}}</td>
+            <td>{{resourceCollectCol.col6}}</td>
+            <td>{{resourceCollectCol.col7}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

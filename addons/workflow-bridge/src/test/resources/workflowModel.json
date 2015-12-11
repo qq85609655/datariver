@@ -1,0 +1,573 @@
+{
+  "enumTypes": [
+    {
+      "name": "WorkflowJobStatus",
+      "enumValues": [
+        {
+          "value": "PREP",
+          "ordinal": 1
+        },
+        {
+          "value": "RUNNING",
+          "ordinal": 2
+        },
+        {
+          "value": "SUCCEEDED",
+          "ordinal": 3
+        },
+        {
+          "value": "KILLED",
+          "ordinal": 4
+        },
+        {
+          "value": "FAILED",
+          "ordinal": 5
+        },
+        {
+          "value": "SUSPENDED",
+          "ordinal": 6
+        }
+      ]
+    },
+    {
+      "name": "WorkflowJobRunTimeUnit",
+      "enumValues": [
+        {
+          "value": "MINUTE",
+          "ordinal": 1
+        },
+        {
+          "value": "HOUR",
+          "ordinal": 2
+        },
+        {
+          "value": "DAY",
+          "ordinal": 3
+        },
+        {
+          "value": "WEEK",
+          "ordinal": 4
+        },
+        {
+          "value": "MONTH",
+          "ordinal": 5
+        },
+        {
+          "value": "END_OF_DAY",
+          "ordinal": 6
+        },
+        {
+          "value": "END_OF_MONTH",
+          "ordinal": 7
+        },
+        {
+          "value": "CRON",
+          "ordinal": 8
+        },
+        {
+          "value": "NONE",
+          "ordinal": 9
+        }
+      ]
+    },
+    {
+      "name": "WorkflowActionStatus",
+      "enumValues": [
+        {
+          "value": "PREP",
+          "ordinal": 1
+        },
+        {
+          "value": "RUNNING",
+          "ordinal": 2
+        },
+        {
+          "value": "OK",
+          "ordinal": 3
+        },
+        {
+          "value": "ERROR",
+          "ordinal": 4
+        },
+        {
+          "value": "USER_RETRY",
+          "ordinal": 5
+        },
+        {
+          "value": "START_RETRY",
+          "ordinal": 6
+        },
+        {
+          "value": "START_MANUAL",
+          "ordinal": 7
+        },
+        {
+          "value": "DONE",
+          "ordinal": 8
+        },
+        {
+          "value": "END_RETRY",
+          "ordinal": 9
+        },
+        {
+          "value": "END_MANUAL",
+          "ordinal": 10
+        },
+        {
+          "value": "KILLED",
+          "ordinal": 11
+        },
+        {
+          "value": "FAILED",
+          "ordinal": 12
+        }
+      ]
+    },
+    {
+      "name": "WorkflowActionType",
+      "enumValues": [
+        {
+          "value": "ODPSMR",
+          "ordinal": 1
+        },
+        {
+          "value": "ODPSSQL",
+          "ordinal": 2
+        },
+        {
+          "value": "DATABRIDGE",
+          "ordinal": 3
+        },
+        {
+          "value": "SUBFLOW",
+          "ordinal": 4
+        },
+        {
+          "value": "CTL_START",
+          "ordinal": 5
+        },
+        {
+          "value": "CTL_FORK",
+          "ordinal": 6
+        },
+        {
+          "value": "CTL_JOIN",
+          "ordinal": 7
+        },
+        {
+          "value": "CTL_KILL",
+          "ordinal": 8
+        },
+        {
+          "value": "CTL_END",
+          "ordinal": 9
+        },
+        {
+          "value": "SWITCH",
+          "ordinal": 10
+        },
+        {
+          "value": "SSH",
+          "ordinal": 11
+        },
+        {
+          "value": "EMAIL",
+          "ordinal": 12
+        },
+        {
+          "value": "MR",
+          "ordinal": 13
+        },
+        {
+          "value": "SQOOP",
+          "ordinal": 14
+        },
+        {
+          "value": "DISTCP",
+          "ordinal": 15
+        },
+        {
+          "value": "FS",
+          "ordinal": 16
+        },
+        {
+          "value": "HIVE",
+          "ordinal": 17
+        },
+        {
+          "value": "PIG",
+          "ordinal": 18
+        },
+        {
+          "value": "SHELL",
+          "ordinal": 19
+        },
+        {
+          "value": "START",
+          "ordinal": 20
+        },
+        {
+          "value": "END",
+          "ordinal": 21
+        }
+      ]
+    }
+  ],
+  "structTypes": [
+  ],
+  "traitTypes": [
+  ],
+  "classTypes": [
+    {
+      "superTypes": [
+        "Referenceable"
+      ],
+      "hierarchicalMetaTypeName": "org.apache.atlas.typesystem.types.ClassType",
+      "typeName": "WorkflowJob",
+      "attributeDefinitions": [
+        {
+          "name": "name",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "description",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "workflowId",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "actions",
+          "dataTypeName": "array<WorkflowAction>",
+          "multiplicity": "collection",
+          "isComposite": true,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "actionsDAG",
+          "dataTypeName": "array<ETLStepSequence>",
+          "multiplicity": "optional",
+          "isComposite": true,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "config",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "createTime",
+          "dataTypeName": "long",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "startTime",
+          "dataTypeName": "long",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "endTime",
+          "dataTypeName": "long",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "user",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "status",
+          "dataTypeName": "WorkflowJobStatus",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "parentId",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        }
+      ]
+    },
+    {
+      "superTypes": [
+        "Referenceable"
+      ],
+      "hierarchicalMetaTypeName": "org.apache.atlas.typesystem.types.ClassType",
+      "typeName": "WorkflowActionTemplate",
+      "attributeDefinitions": [
+        {
+          "name": "name",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "description",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "templateId",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "actions",
+          "dataTypeName": "array<WorkflowAction>",
+          "multiplicity": "collection",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "config",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "workflowActionName",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        }
+      ]
+    },
+    {
+      "superTypes": [
+        "Referenceable"
+      ],
+      "hierarchicalMetaTypeName": "org.apache.atlas.typesystem.types.ClassType",
+      "typeName": "WorkflowTemplate",
+      "attributeDefinitions": [
+        {
+          "name": "name",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "description",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "templateId",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "workflowJobs",
+          "dataTypeName": "array<WorkflowJob>",
+          "multiplicity": "collection",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "config",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "workflowName",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "lineage",
+          "dataTypeName": "LineageWorkflowProcessInfo",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        }
+      ]
+    },
+    {
+      "superTypes": [
+        "AbstractProcess"
+      ],
+      "hierarchicalMetaTypeName": "org.apache.atlas.typesystem.types.ClassType",
+      "typeName": "WorkflowAction",
+      "attributeDefinitions": [
+        {
+          "name": "type",
+          "dataTypeName": "WorkflowActionType",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "actionId",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "instanceId",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "etlInstance",
+          "dataTypeName": "ETLTask",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "workflowId",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "config",
+          "dataTypeName": "string",
+          "multiplicity": "required",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "configId",
+          "dataTypeName": "string",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "startTime",
+          "dataTypeName": "long",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "endTime",
+          "dataTypeName": "long",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        },
+        {
+          "name": "status",
+          "dataTypeName": "WorkflowActionStatus",
+          "multiplicity": "optional",
+          "isComposite": false,
+          "isUnique": false,
+          "isIndexable": true,
+          "reverseAttributeName": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "columns": [
+    {
+      "length": "9",
+      "name": "num",
+      "precision": "0",
+      "type": "Integer"
+    },
+    {
+      "length": "20",
+      "name": "city",
+      "precision": "-1",
+      "type": "String"
+    },
+    {
+      "length": "20",
+      "name": "name",
+      "precision": "-1",
+      "type": "String"
+    },
+    {
+      "length": "0",
+      "name": "birthDate",
+      "precision": "-1",
+      "type": "Date"
+    }
+  ],
+  "partitions": []
+}

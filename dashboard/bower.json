@@ -1,0 +1,25 @@
+{
+    "name": "atlas-metadata",
+    "description": "Apache Atlas",
+    "version": "1.0.0-SNAPSHOT",
+    "devDependencies": {
+        "angular": "http://121.41.90.60:9090/nexus/content/sites/bower/bower-angular-1.2.28.tar.gz",
+        "angular-resource": "http://121.41.90.60:9090/nexus/content/sites/bower/bower-angular-resource-1.2.28.tar.gz",
+        "angular-cookies": "http://121.41.90.60:9090/nexus/content/sites/bower/bower-angular-cookies-1.2.28.tar.gz",
+        "angular-route": "http://121.41.90.60:9090/nexus/content/sites/bower/bower-angular-route-1.2.28.tar.gz",
+        "angular-sanitize": "http://121.41.90.60:9090/nexus/content/sites/bower/bower-angular-sanitize-1.2.28.tar.gz",
+        "bootstrap": "http://121.41.90.60:9090/nexus/content/sites/bower/bootstrap-3.1.1.tar.gz",
+        "angular-bootstrap": "http://121.41.90.60:9090/nexus/content/sites/bower/bootstrap-bower-0.12.1.tar.gz",
+        "angular-ui-router": "http://121.41.90.60:9090/nexus/content/sites/bower/ui-router-0.2.15.tar.gz",
+        "d3": "http://121.41.90.60:9090/nexus/content/sites/bower/d3-3.5.5.tar.gz",
+        "d3-tip": "http://121.41.90.60:9090/nexus/content/sites/bower/d3-tip-0.6.7.tar.gz",
+        "lodash": "http://121.41.90.60:9090/nexus/content/sites/bower/lodash-3.0.1.tar.gz",
+        "angular-ui-utils": "http://121.41.90.60:9090/nexus/content/sites/bower/ui-utils-0.1.1.tar.gz",
+        "font-awesome": "http://121.41.90.60:9090/nexus/content/sites/bower/Font-Awesome-4.2.0.tar.gz",
+        "closure-compiler": "http://121.41.90.60:9090/nexus/content/sites/bower/compiler-20140814.zip",
+        "ng-closure-runner": "http://121.41.90.60:9090/nexus/content/sites/bower/ng-closure-runner.zip"
+    },
+    "resolutions": {
+        "d3": "http://121.41.90.60:9090/nexus/content/sites/bower/d3-3.5.5.tar.gz"
+    }
+}

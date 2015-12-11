@@ -1,0 +1,23 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/12 20:24
+-->
+<div class="container" ng-controller="headerController">
+    <nav class="navbar navbar-static-top navbar-default">
+            <div class="row col-lg-2 ml5px mt5px">
+                <span style="font-size: 26px; color: orange;">DataRiver</span>
+            </div>
+            <div class="col-lg-9">
+                <ul class="nav nav-pills nav-justified">
+                    <li ng-repeat="headerdt in headerData.results" ui-sref-active="active">
+                        <a ui-sref="{{headerdt.link}}" href="javascript: void(0)" style="font-size: 22px;">{{headerdt.title}}</a>
+                    </li>
+                </ul>
+            </div>
+    </nav>
+</div>
+

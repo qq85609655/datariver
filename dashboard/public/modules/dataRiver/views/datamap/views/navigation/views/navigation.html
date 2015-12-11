@@ -1,0 +1,18 @@
+<!--
+* 描述信息
+*
+* @author XiangShaolong 0095
+* @version 1.0.0
+* @company DtDream
+* @date 2015/11/13 16:15
+-->
+
+<div class="well" style="height: 510px">
+    <ul class="nav nav-pills nav-stacked mt15px">
+        <li ng-repeat="navTitle in dataMapData.navText" ui-sref-active="active">
+            <a ui-sref="{{navTitle.link}}" style="font-size: 20px;">
+                <i class="{{navTitle.icon}}"></i>&nbsp;&nbsp;{{navTitle.title}}
+            </a>
+        </li>
+    </ul>
+</div>

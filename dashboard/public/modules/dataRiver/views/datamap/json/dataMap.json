@@ -1,0 +1,161 @@
+{
+  "navText": [
+    {"title": "动态", "link": ".dynamic", "icon": "fa fa-refresh fa fa-spin"},
+    {"title": "统计", "link": ".statistic", "icon": "fa fa-signal"},
+    {"title": "搜索", "link": ".search", "icon": " fa fa-search"},
+    {"title": "最近", "link": ".latest", "icon": "fa fa-coffee"},
+    {"title": "模型", "link": ".model", "icon": "fa fa-camera-retro"}
+  ],
+  "latestHeader": [
+    {"header": "实体名称"},
+    {"header": "实体类型"},
+    {"header": "创建时间"},
+    {"header": "类目"}
+  ],
+  "latestRow": [
+    {"col1": "人员信息库", "col2": "数据库", "col3": "", "col4": "ODPS_PROJECT"},
+    {"col1": "人员信息表", "col2": "表", "col3": "", "col4": "ODPS_TABLE"}
+  ],
+  "modelTable1": [
+    {"header": "包数目", "row": 3},
+    {"header": "类数目", "row": 30},
+    {"header": "枚举数目", "row": 4}
+  ],
+  "modelTable2Header": [
+    {"header": "包名称"},
+    {"header": "类数目"}
+  ],
+  "modelTable2Row": [
+    {"col1": "转换包", "col2": 10, "link": ".convertPackage"},
+    {"col1": "关系型包", "col2": 5, "link": ".relationshipPackage"},
+    {"col1": "过程包", "col2": 5, "link": ".processPackage"},
+    {"col1": "核心包", "col2": 4, "link": ".corePackage"}
+  ],
+  "financeTable1Head": [
+    {
+      "head": "部门名称"
+    },
+    {
+      "head": "财政厅"
+    }
+  ],
+  "financeTable1Row": [
+    {
+      "col1": "地址",
+      "col2": "杭州"
+    },
+    {
+      "col1": "邮箱",
+      "col2": ""
+    },
+    {
+      "col1": "电话",
+      "col2": ""
+    },
+    {
+      "col1": "负责人",
+      "col2": ""
+    },
+    {
+      "col1": "描述",
+      "col2": ""
+    },
+    {
+      "col1": "编号",
+      "col2": ""
+    },
+    {
+      "col1": "上级部门",
+      "col2": "浙江省政府"
+    }
+  ],
+  "financeTable2": [
+    {
+      "head": "库数目",
+      "col": ""
+    },
+    {
+      "head": "表数目",
+      "col": ""
+    }
+  ],
+  "financeTable3Head": [
+    {
+      "head": "库名称"
+    },
+    {
+      "head": "是否外部"
+    },
+    {
+      "head": "创建者"
+    },
+    {
+      "head": "创建时间"
+    },
+    {
+      "head": "所有者"
+    },
+    {
+      "head": "描述"
+    },
+    {
+      "head": "状态"
+    },
+    {
+      "head": "表数目"
+    }
+  ],
+  "financeTable3Row": [
+    {
+      "col1": "人员信息库",
+      "col2": "否",
+      "col3": "",
+      "col4": "",
+      "col5": "",
+      "col6": "",
+      "col7": "",
+      "col8": "",
+      "link": ".pepInfo"
+    },
+    {
+      "col1": "",
+      "col2": "",
+      "col3": "",
+      "col4": "",
+      "col5": "",
+      "col6": "",
+      "col7": "",
+      "col8": ""
+    },
+    {
+      "col1": "",
+      "col2": "",
+      "col3": "",
+      "col4": "",
+      "col5": "",
+      "col6": "",
+      "col7": "",
+      "col8": ""
+    },
+    {
+      "col1": "",
+      "col2": "",
+      "col3": "",
+      "col4": "",
+      "col5": "",
+      "col6": "",
+      "col7": "",
+      "col8": ""
+    },
+    {
+      "col1": "",
+      "col2": "",
+      "col3": "",
+      "col4": "",
+      "col5": "",
+      "col6": "",
+      "col7": "",
+      "col8": ""
+    }
+  ]
+}
