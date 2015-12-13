@@ -3,9 +3,8 @@ package DataModel;
 import com.google.common.collect.ImmutableList;
 import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasServiceException;
-import org.apache.atlas.common.model.CoreDataTypes;
-import org.apache.atlas.common.model.RelationalDataTypes;
-import org.apache.atlas.odps.model.OdpsDataTypes;
+import org.apache.atlas.model.CoreDataTypes;
+import org.apache.atlas.model.RelationalDataTypes;
 import org.apache.atlas.typesystem.TypesDef;
 import org.apache.atlas.typesystem.json.TypesSerialization;
 import org.apache.atlas.typesystem.types.*;
@@ -36,6 +35,7 @@ public class TenantDataModelGenerator {
     public  void createDataModel(AtlasClient client) throws AtlasServiceException {
         createDrProjectType();
         createDrProjectStatus();
+        createDrEngineType();
         createDrUser();
         createDrProjectRole();
         createEngine();
@@ -45,19 +45,30 @@ public class TenantDataModelGenerator {
     }
 
     private void createDrEngineType(){
-
+        EnumValue[] values = {
+                new EnumValue("DR_ENGINE_TYPE_ODPS", 1),
+                new EnumValue("DR_ENGINE_TYPE_ADS", 4)};
+        String name = TenantDataModelType.DR_ENGINE_TYPE.getName();
+        EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
+        enumTypeDefinitionMap.put(name, definition);
     }
     private void createDrProjectType(){
-        EnumValue[] values = {new EnumValue("DR_PROJECT_TYPE_DEVELOP", 1), new EnumValue("DR_PROJECT_TYPE_TEST", 2), new EnumValue("DR_PROJECT_TYPE_PRODUCE", 3),
-            new EnumValue("DR_PROJECT_TYPE_PREPARE", 4)};
+        EnumValue[] values = {
+                new EnumValue("DR_PROJECT_TYPE_DEVELOP", 1),
+                new EnumValue("DR_PROJECT_TYPE_TEST", 2),
+                new EnumValue("DR_PROJECT_TYPE_PRODUCE", 3),
+                new EnumValue("DR_PROJECT_TYPE_PREPARE", 4)};
         String name = TenantDataModelType.DR_PROJECT_TYPE.getName();
         EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
         enumTypeDefinitionMap.put(name, definition);
     }
 
     private void createDrProjectStatus(){
-        EnumValue[] values = {new EnumValue("DR_PROJECT_STATUS_NORMAL", 1), new EnumValue("DR_PROJECT_STATUS_DELETED", 2), new EnumValue("DR_PROJECT_STATUS_INACTIVE", 3),
-            new EnumValue("DR_PROJECT_STATUS_BOOTING", 4)};
+        EnumValue[] values = {
+                new EnumValue("DR_PROJECT_STATUS_NORMAL", 1),
+                new EnumValue("DR_PROJECT_STATUS_DELETED", 2),
+                new EnumValue("DR_PROJECT_STATUS_INACTIVE", 3),
+                new EnumValue("DR_PROJECT_STATUS_BOOTING", 4)};
         String name = TenantDataModelType.DR_PROJECT_STATUS.getName();
         EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
         enumTypeDefinitionMap.put(name, definition);
@@ -90,19 +101,34 @@ public class TenantDataModelGenerator {
                 Multiplicity.REQUIRED, false, null),
             new AttributeDefinition("users", DataTypes.arrayTypeName(TenantDataModelType.DR_USER.getName()),
                 Multiplicity.OPTIONAL, false, null),
-            new AttributeDefinition("acls", DataTypes.arrayTypeName(OdpsDataTypes.ODPS_OBJECT_PRIVILEGE.getValue()),
-                Multiplicity.OPTIONAL, false, null),
             new AttributeDefinition("policy",
                 DataTypes.STRING_TYPE.getName(),
                 Multiplicity.OPTIONAL, false, null),
             new AttributeDefinition("proxyAccount", DataTypes.STRING_TYPE.getName(),
                 Multiplicity.OPTIONAL, false, null),
+            new AttributeDefinition("acls", DataTypes.arrayTypeName(TenantDataModelType.DR_OBJECT_PRIVILEGES.getName()),
+                Multiplicity.OPTIONAL, false, null)
         };
 
         String name = TenantDataModelType.DR_PROJECT_ROLE.getName();
         HierarchicalTypeDefinition<ClassType> definition =
             new HierarchicalTypeDefinition<>(ClassType.class, name,
                 ImmutableList.of(CoreDataTypes.DATA_ELEMENT_SUPER_TYPE.getValue()), attributeDefinitions);
+        classTypeDefinitions.put(name, definition);
+        traitTypeDefinitions.put(name, TypesUtil.createTraitTypeDef(TENANT_TRAIT + name, null));
+    }
+
+    private void createDrObjectPrivileges(){
+        AttributeDefinition[] attributeDefinitions = new AttributeDefinition[]{
+                new AttributeDefinition("objectType", RelationalDataTypes.DATA_OBJECT_TYPE.getValue(),
+                        Multiplicity.REQUIRED, false, null),
+                new AttributeDefinition("acls", DataTypes.arrayTypeName(RelationalDataTypes.DATA_OBJECT_PRIVILEGES.getValue()),
+                        Multiplicity.OPTIONAL, false, null)
+        };
+
+        String name = TenantDataModelType.DR_OBJECT_PRIVILEGES.getName();
+        HierarchicalTypeDefinition<ClassType> definition =
+                new HierarchicalTypeDefinition<>(ClassType.class, name, null, attributeDefinitions);
         classTypeDefinitions.put(name, definition);
         traitTypeDefinitions.put(name, TypesUtil.createTraitTypeDef(TENANT_TRAIT + name, null));
     }

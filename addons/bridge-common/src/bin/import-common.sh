@@ -91,7 +91,7 @@ export COMMON_CP
 echo Using COMMON configuration directory [$COMMON_CP]
 echo "Logs for import are in $METADATA_LOG_DIR/import-common.log"
 
-${JAVA_BIN} ${JAVA_PROPERTIES} -cp ${COMMON_CP}:${METADATACPPATH} org.apache.atlas.common.bridge.CommonMetaStoreBridge
+${JAVA_BIN} ${JAVA_PROPERTIES} -cp ${COMMON_CP}:${METADATACPPATH} org.apache.atlas.model.CommonMetaStoreBridge
 
 RETVAL=$?
 [ $RETVAL -eq 0 ] && echo common Data Model imported successfully!!!

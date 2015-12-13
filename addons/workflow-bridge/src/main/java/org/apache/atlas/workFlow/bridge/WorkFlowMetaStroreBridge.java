@@ -21,7 +21,7 @@ package org.apache.atlas.workFlow.bridge;
 import com.google.common.collect.ImmutableList;
 import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasServiceException;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.typesystem.TypesDef;
 import org.apache.atlas.typesystem.json.TypesSerialization;
 import org.apache.atlas.typesystem.types.*;
@@ -32,8 +32,6 @@ import org.apache.atlas.workFlow.model.WorkFlowDataModelGenerator;
 import org.apache.atlas.workFlow.model.WorkFlowDataTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /**
  * @author FanZeng 0189

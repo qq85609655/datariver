@@ -21,14 +21,6 @@
             <groupId>org.apache.atlas</groupId>
             <artifactId>atlas-repository</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.atlas</groupId>
-            <artifactId>bridge-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.atlas</groupId>
-            <artifactId>odps-bridge</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

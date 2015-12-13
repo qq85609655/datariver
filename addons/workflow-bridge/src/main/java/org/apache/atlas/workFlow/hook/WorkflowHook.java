@@ -18,38 +18,17 @@
 
 package org.apache.atlas.workFlow.hook;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.inject.Singleton;
 
-import org.apache.atlas.ApplicationProperties;
-import org.apache.atlas.AtlasClient;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
-import org.apache.atlas.typesystem.TypesDef;
-import org.apache.atlas.typesystem.json.TypesSerialization;
-import org.apache.atlas.typesystem.types.*;
-import org.apache.atlas.typesystem.types.utils.TypesUtil;
 import org.apache.atlas.workFlow.MessageConsumer.ConsumerForWorkFlow;
 import org.apache.atlas.workFlow.conf.Conf;
-import org.apache.atlas.workFlow.connection.AtlasConnectionFactory;
-import org.apache.atlas.workFlow.handler.WorkflowJobHandler;
-import org.apache.atlas.workFlow.model.WorkFlowDataModelGenerator;
-import org.apache.atlas.workFlow.model.WorkFlowDataTypes;
-import org.apache.commons.configuration.Configuration;
-import org.apache.oozie.AppType;
 import org.apache.oozie.client.JMSConnectionInfo;
 import org.apache.oozie.client.OozieClient;
 import org.apache.oozie.client.OozieClientException;
-import org.apache.oozie.client.event.Event;
-import org.apache.oozie.client.event.jms.JMSHeaderConstants;
-import org.apache.oozie.client.event.jms.JMSMessagingUtils;
-import org.apache.oozie.client.event.message.CoordinatorActionMessage;
-import org.apache.oozie.client.event.message.SLAMessage;
-import org.apache.oozie.client.event.message.WorkflowJobMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;

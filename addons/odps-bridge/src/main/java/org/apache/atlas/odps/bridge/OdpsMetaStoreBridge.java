@@ -48,10 +48,7 @@ public class OdpsMetaStoreBridge {
     }
 
     public static void main(String[] argv) throws Exception {
-        CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-        commonMetaStoreBridge.registerCommonDataModel();
-
-        OdpsMetaStoreBridge odpsMetaStoreBridge = new OdpsMetaStoreBridge();
+          OdpsMetaStoreBridge odpsMetaStoreBridge = new OdpsMetaStoreBridge();
         odpsMetaStoreBridge.registerOdpsDataModel();
     }
 }

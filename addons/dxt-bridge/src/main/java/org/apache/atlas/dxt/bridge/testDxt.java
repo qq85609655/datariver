@@ -19,7 +19,7 @@
 package org.apache.atlas.dxt.bridge;
 
 
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 
 /**
  * test dxt meta register
@@ -33,9 +33,6 @@ import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
     }
 
     public static void main(String[] argv) throws Exception {
-        CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-        commonMetaStoreBridge.registerCommonDataModel();
-
         DxtMetaStoreBridge dxtMetaStoreBridge = new DxtMetaStoreBridge();
         dxtMetaStoreBridge.registerDxtDataModel();
     }

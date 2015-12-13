@@ -20,7 +20,7 @@ package org.apache.atlas.dxt.bridge;
 
 import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasServiceException;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.dxt.model.DxtDataModelGenerator;
 import org.apache.atlas.dxt.model.DxtDataTypes;
 import org.slf4j.Logger;
@@ -66,9 +66,6 @@ public class DxtMetaStoreBridge {
     }
 
     public static void main(String[] argv) throws Exception {
-        CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-        commonMetaStoreBridge.registerCommonDataModel();
-
         DxtMetaStoreBridge dxtMetaStoreBridge = new DxtMetaStoreBridge();
         dxtMetaStoreBridge.registerDxtDataModel();
     }

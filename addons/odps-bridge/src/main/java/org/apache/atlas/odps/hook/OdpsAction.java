@@ -1,11 +1,10 @@
 package org.apache.atlas.odps.hook;
 
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.common.hook.BaseHook;
 import org.apache.atlas.common.util.CommonInfo;
 import org.apache.atlas.common.util.LineageHandler;
 import org.apache.atlas.odps.bridge.OdpsMetaStoreBridge;
-import org.elasticsearch.common.xcontent.ToXContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,8 +32,6 @@ public class OdpsAction implements CommonInfo {
 
     public synchronized  void registerDataModel(){
         try{
-            CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-            commonMetaStoreBridge.registerCommonDataModel();
             OdpsMetaStoreBridge bridge = new OdpsMetaStoreBridge();
             bridge.registerOdpsDataModel();
         } catch (Exception e){

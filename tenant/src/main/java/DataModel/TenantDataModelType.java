@@ -14,6 +14,7 @@ public enum TenantDataModelType {
     //class type
     DR_USER("DrUser"),
     DR_PROJECT_ROLE("DrProjectRole"),
+    DR_OBJECT_PRIVILEGES("DrObjectPrivileges"),
     DR_TENANT("DrTenant"),
     DR_PROJECT("DrProject"),
     DR_ENGINE("DrEngine");

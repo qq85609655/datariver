@@ -21,8 +21,8 @@ package org.apache.atlas.dxt.model;
 import com.google.common.collect.ImmutableList;
 
 import org.apache.atlas.AtlasException;
-import org.apache.atlas.common.model.RelationalDataTypes;
-import org.apache.atlas.common.model.TransformDataTypes;
+import org.apache.atlas.model.RelationalDataTypes;
+import org.apache.atlas.model.TransformDataTypes;
 import org.apache.atlas.dxt.util.DxtConstant;
 import org.apache.atlas.typesystem.TypesDef;
 import org.apache.atlas.typesystem.json.TypesSerialization;
@@ -36,7 +36,6 @@ import org.apache.atlas.typesystem.types.Multiplicity;
 import org.apache.atlas.typesystem.types.StructType;
 import org.apache.atlas.typesystem.types.StructTypeDefinition;
 import org.apache.atlas.typesystem.types.TraitType;
-import org.apache.atlas.typesystem.types.TypeUtils;
 import org.apache.atlas.typesystem.types.utils.TypesUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

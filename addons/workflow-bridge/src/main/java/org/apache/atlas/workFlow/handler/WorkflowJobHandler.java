@@ -21,7 +21,7 @@ package org.apache.atlas.workFlow.handler;
 import com.dtdream.dthink.dtalent.datastudio.activemq.MessageEnum;
 import com.dtdream.dthink.dtalent.datastudio.utils.HttpUtils;
 import org.apache.atlas.AtlasServiceException;
-import org.apache.atlas.common.model.TransformDataTypes;
+import org.apache.atlas.model.TransformDataTypes;
 import org.apache.atlas.common.util.CommonInfo;
 import org.apache.atlas.typesystem.IStruct;
 import org.apache.atlas.typesystem.Referenceable;

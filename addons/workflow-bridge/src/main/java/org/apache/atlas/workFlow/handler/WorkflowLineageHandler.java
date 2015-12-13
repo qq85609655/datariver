@@ -1,7 +1,7 @@
 package org.apache.atlas.workFlow.handler;
 
 import org.apache.atlas.AtlasClient;
-import org.apache.atlas.common.model.LineageDataTypes;
+import org.apache.atlas.model.LineageDataTypes;
 import org.apache.atlas.common.util.LineageHandler;
 import org.apache.atlas.typesystem.Referenceable;
 import org.apache.atlas.typesystem.json.InstanceSerialization;

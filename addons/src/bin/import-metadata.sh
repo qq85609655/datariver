@@ -88,7 +88,7 @@ for bridge in ${BRIDGES}; do
     case ${bridge} in
     bridge-common | common)
         BRIDGE_DIR=common
-        MAIN_CLASS=org.apache.atlas.common.bridge.CommonMetaStoreBridge
+        MAIN_CLASS=org.apache.atlas.model.CommonMetaStoreBridge
         ;;
     dxt-bridge | dxt)
         BRIDGE_DIR=dxt

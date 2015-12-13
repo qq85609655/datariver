@@ -23,6 +23,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.inject.Provider;
 import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasException;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.repository.RepositoryException;
 import org.apache.atlas.typesystem.exception.EntityNotFoundException;
 import org.apache.atlas.typesystem.exception.TypeNotFoundException;
@@ -110,8 +111,9 @@ public class DefaultMetadataService implements MetadataService {
 
             // restore types before creating super types
             createSuperTypes();
-
-        } catch (AtlasException e) {
+            CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge(typeSystem, this);
+            commonMetaStoreBridge.registerCommonDataModel();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         LOG.info("Restored type system from the store");

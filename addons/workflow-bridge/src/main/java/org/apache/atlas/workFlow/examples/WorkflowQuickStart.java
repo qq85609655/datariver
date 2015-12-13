@@ -1,15 +1,9 @@
 package org.apache.atlas.workFlow.examples;
 
-import com.google.common.collect.ImmutableList;
-
 import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasServiceException;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.common.util.FileUtil;
-import org.apache.atlas.typesystem.TypesDef;
-import org.apache.atlas.typesystem.json.TypesSerialization;
-import org.apache.atlas.typesystem.types.*;
-import org.apache.atlas.typesystem.types.utils.TypesUtil;
 import org.apache.atlas.workFlow.bridge.WorkFlowMetaStroreBridge;
 import org.apache.atlas.workFlow.client.WorkflowExtendsJob;
 import org.apache.atlas.workFlow.handler.WorkflowJobHandler;
@@ -19,7 +13,6 @@ import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
 
 import java.io.File;
 import java.util.ArrayList;

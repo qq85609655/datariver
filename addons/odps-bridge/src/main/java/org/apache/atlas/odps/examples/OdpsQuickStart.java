@@ -2,10 +2,10 @@ package org.apache.atlas.odps.examples;
 
 import com.dtdream.dthink.dtalent.datastudio.activemq.MessageEnum;
 import org.apache.atlas.AtlasClient;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.common.hook.BaseHook;
-import org.apache.atlas.common.model.RelationalDataTypes;
-import org.apache.atlas.common.model.TransformDataTypes;
+import org.apache.atlas.model.RelationalDataTypes;
+import org.apache.atlas.model.TransformDataTypes;
 import org.apache.atlas.common.util.CommonInfo;
 import org.apache.atlas.odps.bridge.OdpsMetaStoreBridge;
 import org.apache.atlas.odps.hook.OdpsHook;
@@ -52,13 +52,6 @@ public class OdpsQuickStart {
     }
 
     private void createTypes() throws Exception {
-        //创建
-        try {
-            CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-            commonMetaStoreBridge.registerCommonDataModel();
-        } catch (Exception e) {
-            //ignore,maybe has been registered
-        }
         OdpsMetaStoreBridge bridge = new OdpsMetaStoreBridge();
         bridge.registerOdpsDataModel();
 

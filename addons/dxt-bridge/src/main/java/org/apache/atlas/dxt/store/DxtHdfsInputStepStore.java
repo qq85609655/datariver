@@ -18,7 +18,7 @@
 
 package org.apache.atlas.dxt.store;
 
-import org.apache.atlas.common.model.RelationalDataTypes;
+import org.apache.atlas.model.RelationalDataTypes;
 import org.apache.atlas.dxt.client.DxtClientUtil;
 import org.apache.atlas.dxt.model.DxtDataTypes;
 import org.apache.atlas.dxt.util.DxtConstant;

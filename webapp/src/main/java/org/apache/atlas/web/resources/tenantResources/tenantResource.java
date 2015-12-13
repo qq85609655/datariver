@@ -18,5 +18,7 @@ public class tenantResource {
     @POST
     public String createTenant(String json){
         DataRiverTenant tenant = null;
+
+        return null;
     }
 }

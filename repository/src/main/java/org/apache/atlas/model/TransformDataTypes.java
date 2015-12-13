@@ -16,32 +16,35 @@
  * limitations under the License.
  */
 
-package org.apache.atlas.common.model;
+package org.apache.atlas.model;
 
 /**
- * 关系型元模型定义
+ * ETL元模型定义
  * @author 向日葵 0395
  * @version 1.0.0
  * @company DTDream
  * @date 2015/11/9 11:50
  */
 
-public enum RelationalDataTypes {
+public enum TransformDataTypes {
     // Enums
-    DATA_CONTAINER_TYPE("DataContainerType"),
-    DATA_CONTAINER_STATUS("DataContainerStatus"),
+    ETL_TASK_TYPE("ETLTaskType"),
+    ETL_TASK_STATUS("ETLTaskStatus"),
+    ETL_STEP_TYPE("ETLStepType"),
+    ETL_INSTANCE_STATUS("ETLInstanceStatus"),
 
     // Structs
 
     // Classes
-    DB_ACCESS_SUPER_TYPE("DBAccess"),
-    DATA_FIELD_SUPER_TYPE("DataField"),
-    DATA_TABLE_SUPER_TYPE("DataTable"),
-    DATA_CONTAINER_SUPER_TYPE("DataContainer"),
-    DATA_ROWSET_SUPER_TYPE("DataRowSet");
+    ABSTRACT_PROCESS_SUPER_TYPE("AbstractProcess"),
+    ETL_INSTANCE_SUPER_TYPE("ETLInstance"),
+    ETL_TASK_SUPER_TYPE("ETLTask"),
+    ETL_STEP_SEQUENCE_SUPER_TYPE("ETLStepSequence"),
+    ETL_STEP_SUPER_TYPE("ETLStep"),;
+
     private final String value;
 
-    RelationalDataTypes(String value) {
+    TransformDataTypes(String value) {
         this.value = value;
     }
 

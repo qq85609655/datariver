@@ -3,7 +3,6 @@ package entities;
 import DataModel.TenantDataModelType;
 import org.apache.atlas.typesystem.Referenceable;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 

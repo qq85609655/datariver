@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 import com.dtdream.dthink.dtalent.datastudio.activemq.MessageEnum;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.common.hook.BaseHook;
-import org.apache.atlas.common.model.RelationalDataTypes;
+import org.apache.atlas.model.RelationalDataTypes;
 import org.apache.atlas.common.util.CommonInfo;
 import org.apache.atlas.odps.bridge.OdpsMetaStoreBridge;
 import org.apache.atlas.odps.parser.BaseJsonParser;
@@ -38,12 +38,6 @@ public class OdpsIT extends BaseAddonIT {
     @Test
     public void testMetaModel() throws Exception {
         try {
-            CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-            commonMetaStoreBridge.registerCommonDataModel();
-        } catch (Exception e) {
-            //第二次创建则抛异常,后面的测试正常即可
-        }
-        try {
             OdpsMetaStoreBridge bridge = new OdpsMetaStoreBridge();
             bridge.registerOdpsDataModel();
         } catch (Exception e) {
@@ -52,7 +46,6 @@ public class OdpsIT extends BaseAddonIT {
         //Assert.assertNotNull(dgiCLient.getType("DataElement"));
         assertEnum(OdpsDataTypes.ODPS_OBJECT_TYPE.getValue());
         assertEnum(OdpsDataTypes.ODPS_RESOURCE_TYPE.getValue());
-        assertEnum(OdpsDataTypes.ODPS_OBJECT_PRIVILEGE.getValue());
         assertEnum(OdpsDataTypes.ODPS_PACKAGE_RESOURCE_TYPE.getValue());
         assertClass(OdpsDataTypes.ODPS_ACCINFO.getValue());
         assertClass(OdpsDataTypes.ODPS_PROJECT.getValue());

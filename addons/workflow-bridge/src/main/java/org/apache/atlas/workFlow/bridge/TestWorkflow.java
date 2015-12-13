@@ -18,7 +18,7 @@
 
 package org.apache.atlas.workFlow.bridge;
 
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 
 /**
  * @author FanZeng 0189

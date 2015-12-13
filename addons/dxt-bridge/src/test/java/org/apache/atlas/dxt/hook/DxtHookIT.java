@@ -22,7 +22,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import org.apache.atlas.AtlasClient;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.common.util.BaseAddonIT;
 import org.apache.atlas.dxt.bridge.DxtMetaStoreBridge;
 import org.apache.atlas.dxt.examples.DxtQuickStart;
@@ -45,9 +45,6 @@ public class DxtHookIT extends BaseAddonIT {
     public void setUp() throws Exception {
         BaseAddonIT("dxtModel.json");
         dgiCLient = getAtlasClient();
-
-        CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-        commonMetaStoreBridge.registerCommonDataModel();
 
         DxtMetaStoreBridge dxtMetaStoreBridge = new DxtMetaStoreBridge();
         dxtMetaStoreBridge.registerDxtDataModel();

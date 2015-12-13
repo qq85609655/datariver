@@ -20,7 +20,7 @@ package org.apache.atlas.dxt.examples;
 
 import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasServiceException;
-import org.apache.atlas.common.bridge.CommonMetaStoreBridge;
+import org.apache.atlas.model.CommonMetaStoreBridge;
 import org.apache.atlas.common.util.FileUtil;
 import org.apache.atlas.dxt.model.DxtDataModelGenerator;
 import org.apache.atlas.dxt.model.DxtDataTypes;
@@ -81,10 +81,6 @@ public class DxtQuickStart {
     }
 
     private void createTypes() throws Exception {
-        //注册super class的元模型
-        CommonMetaStoreBridge commonMetaStoreBridge = new CommonMetaStoreBridge();
-        commonMetaStoreBridge.registerCommonDataModel();
-
         //注册DXT的元模型
         DxtDataModelGenerator dataModelGenerator = new DxtDataModelGenerator();
 

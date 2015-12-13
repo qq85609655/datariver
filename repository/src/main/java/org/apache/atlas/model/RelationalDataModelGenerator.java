@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.atlas.common.model;
+package org.apache.atlas.model;
 
 import com.google.common.collect.ImmutableList;
 
@@ -68,6 +68,8 @@ public class RelationalDataModelGenerator {
         // Relational Types
         defineDataContainerTypeEnum();
         defineDataContainerStatusEnum();
+        defineObjectTypeEnum();
+        defineObjectPrivilegeEnum();
 
         defineDBAccessInfoSuperType();
         defineDataFieldSuperType();
@@ -129,6 +131,47 @@ public class RelationalDataModelGenerator {
 
         LOG.debug("Created definition for " + RelationalDataTypes.DATA_CONTAINER_TYPE.getValue());
         enumTypeDefinitionMap.put(RelationalDataTypes.DATA_CONTAINER_TYPE.getValue(), definition);
+    }
+
+    private void defineObjectTypeEnum() {
+        EnumValue[] values = {
+                new EnumValue("PROJECT", 1),
+                new EnumValue("TABLE", 2),
+                new EnumValue("FUNCTION", 3),
+                new EnumValue("COLUMN", 4),
+                new EnumValue("RESOURCE", 5),
+                new EnumValue("INSTANCE", 6),
+                new EnumValue("JOB", 7),
+                new EnumValue("Volume", 8)
+        };
+        String name = RelationalDataTypes.DATA_OBJECT_TYPE.getValue();
+        EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
+        enumTypeDefinitionMap.put(name, definition);
+        LOG.debug("Created definition for " + name);
+    }
+
+    private void  defineObjectPrivilegeEnum() {
+        EnumValue[] values = {
+                new EnumValue("READ", 1),
+                new EnumValue("WRITE", 2),
+                new EnumValue("LIST", 3),
+                new EnumValue("CREATETABLE", 4),
+                new EnumValue("CREATEFUNCTION", 5),
+                new EnumValue("CREATERESOURCE", 6),
+                new EnumValue("CREATEJOB", 7),
+                new EnumValue("DESCRIBE", 8),
+                new EnumValue("SELECT", 9),
+                new EnumValue("ALTER", 10),
+                new EnumValue("UPDATE", 11),
+                new EnumValue("DROP", 12),
+                new EnumValue("DELETE", 13),
+                new EnumValue("EXECUTE", 14),
+                new EnumValue("ALL", 15),
+                new EnumValue("CREATEINSTANCE", 16)};
+        String name = RelationalDataTypes.DATA_OBJECT_PRIVILEGES.getValue();
+        EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
+        enumTypeDefinitionMap.put(name, definition);
+        LOG.debug("Created definition for " + name);
     }
 
     private void defineDataContainerStatusEnum() throws AtlasException {

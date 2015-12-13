@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.atlas.common.model;
+package org.apache.atlas.model;
 
 import com.google.common.collect.ImmutableList;
 

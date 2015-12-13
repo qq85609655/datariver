@@ -22,8 +22,8 @@ import com.google.common.collect.ImmutableList;
 
 import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasException;
-import org.apache.atlas.common.model.LineageDataTypes;
-import org.apache.atlas.common.model.TransformDataTypes;
+import org.apache.atlas.model.LineageDataTypes;
+import org.apache.atlas.model.TransformDataTypes;
 import org.apache.atlas.typesystem.TypesDef;
 import org.apache.atlas.typesystem.json.TypesSerialization;
 import org.apache.atlas.typesystem.types.*;

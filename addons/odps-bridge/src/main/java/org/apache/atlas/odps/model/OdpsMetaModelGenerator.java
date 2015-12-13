@@ -2,11 +2,10 @@ package org.apache.atlas.odps.model;
 
 import com.google.common.collect.ImmutableList;
 
-import org.apache.atlas.AtlasClient;
 import org.apache.atlas.AtlasException;
-import org.apache.atlas.common.model.CoreDataTypes;
-import org.apache.atlas.common.model.RelationalDataTypes;
-import org.apache.atlas.common.model.TransformDataTypes;
+import org.apache.atlas.model.CoreDataTypes;
+import org.apache.atlas.model.RelationalDataTypes;
+import org.apache.atlas.model.TransformDataTypes;
 import org.apache.atlas.typesystem.TypesDef;
 import org.apache.atlas.typesystem.json.TypesSerialization;
 import org.apache.atlas.typesystem.types.*;
@@ -60,7 +59,7 @@ public class OdpsMetaModelGenerator {
                 new AttributeDefinition("description", DataTypes.STRING_TYPE.getName(),
                         Multiplicity.OPTIONAL, false, null)};
         HierarchicalTypeDefinition<TraitType> organizations = TypesUtil.createTraitTypeDef("Organizations", null, attributeDefinitions);
-        traitTypeDefinitions.put("Organizations",organizations);
+        traitTypeDefinitions.put("Organizations", organizations);
     }
 
     public void createDataModel() throws AtlasException {
@@ -68,7 +67,6 @@ public class OdpsMetaModelGenerator {
         //emnms
         createObjectTypeEnum();
         createResourceTypeEnum();
-        createObjectPrivilegeEnum();
         createPackageResourceTypeEnum();
         //classes
         createProjectClass();
@@ -115,7 +113,7 @@ public class OdpsMetaModelGenerator {
             new AttributeDefinition("name", DataTypes.STRING_TYPE.getName(),
                 Multiplicity.OPTIONAL, false, null),
             new AttributeDefinition("privileges",
-                DataTypes.arrayTypeName(OdpsDataTypes.ODPS_OBJECT_PRIVILEGE.getValue()),
+                DataTypes.arrayTypeName(RelationalDataTypes.DATA_OBJECT_PRIVILEGES.getValue()),
                 Multiplicity.REQUIRED, true, null),
             new AttributeDefinition("resource", CoreDataTypes.DATA_ELEMENT_SUPER_TYPE.getValue(),
                 Multiplicity.OPTIONAL, false, null),
@@ -312,18 +310,6 @@ public class OdpsMetaModelGenerator {
         EnumValue[] values = {new EnumValue("GLOBAL", 1), new EnumValue("PROJECT", 2), new EnumValue("TABLE", 3),
             new EnumValue("PARTITION", 4), new EnumValue("COLUMN", 5)};
         String name = OdpsDataTypes.ODPS_OBJECT_TYPE.getValue();
-        EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
-        enumTypeDefinitionMap.put(name, definition);
-        LOG.debug("Created definition for " + name);
-    }
-
-    private void createObjectPrivilegeEnum() {
-        EnumValue[] values = {new EnumValue("READ", 1), new EnumValue("WRITE", 2), new EnumValue("LIST", 3),
-            new EnumValue("CREATETABLE", 4), new EnumValue("CREATEFUNCTION", 5), new EnumValue("CREATERESOURCE", 6),
-            new EnumValue("CREATEJOB", 7), new EnumValue("DESCRIBE", 8), new EnumValue("SELECT", 9),
-            new EnumValue("ALTER", 10), new EnumValue("UPDATE", 11), new EnumValue("DROP", 12),
-            new EnumValue("DELETE", 13), new EnumValue("EXECUTE", 14), new EnumValue("ALL", 15)};
-        String name = OdpsDataTypes.ODPS_OBJECT_PRIVILEGE.getValue();
         EnumTypeDefinition definition = new EnumTypeDefinition(name, values);
         enumTypeDefinitionMap.put(name, definition);
         LOG.debug("Created definition for " + name);

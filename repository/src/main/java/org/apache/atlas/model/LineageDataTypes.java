@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.atlas.common.model;
+package org.apache.atlas.model;
 
 /**
  * 血缘元模型定义

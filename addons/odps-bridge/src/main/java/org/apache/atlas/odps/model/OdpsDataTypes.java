@@ -12,7 +12,6 @@ public enum OdpsDataTypes {
     //enums
     ODPS_OBJECT_TYPE("OdpsObjectType"),
     ODPS_RESOURCE_TYPE("OdpsResourceType"),
-    ODPS_OBJECT_PRIVILEGE("OdpsObjectPrivilege"),
     ODPS_PACKAGE_RESOURCE_TYPE("OdpsPackageResourceType"),
 
     //classes

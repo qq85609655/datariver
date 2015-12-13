@@ -91,7 +91,7 @@ TIME=`date +%Y%m%d%H%M%s`
 #  echo Using COMMON configuration directory [$COMMON_CP]
 echo "Logs for import are in $METADATA_LOG_DIR/import-common.log"
 
-#${JAVA_BIN} ${JAVA_PROPERTIES} -cp ${COMMON_CP}:${METADATACPPATH} org.apache.atlas.common.model.CommonDataModelGenerator
+#${JAVA_BIN} ${JAVA_PROPERTIES} -cp ${COMMON_CP}:${METADATACPPATH} org.apache.atlas.model.CommonDataModelGenerator
 ${JAVA_BIN} ${JAVA_PROPERTIES} -cp ${COMMON_CP}:${METADATACPPATH} org.apache.atlas.common.bridge.testCommon
 
 RETVAL=$?

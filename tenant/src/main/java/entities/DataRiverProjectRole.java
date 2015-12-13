@@ -1,6 +1,7 @@
 package entities;
 
 import DataModel.TenantDataModelType;
+import org.apache.atlas.ObjectPrivileges;
 import org.apache.atlas.typesystem.Referenceable;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class DataRiverProjectRole {
     private List<DataRiverUser> users = new ArrayList<>();
     private String policy;
     private String proxyAccount;
+    private List<DataRiverObjectPrivileges> acls = new ArrayList<>();
 
     public DataRiverProjectRole(String name){
         this.name = name;
@@ -37,6 +39,7 @@ public class DataRiverProjectRole {
         if (usersRef.size() > 0){
             role.set("users", usersRef);
         }
+
         TenantUtil.formateDataElementProperty(role, qualifiedName);
         return role;
     }
